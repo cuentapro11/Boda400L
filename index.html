@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Rafael & Juana - Invitación de Boda</title>
+     <link rel="stylesheet" href="ccs-2.css?v=20250821-2">
+    <!-- Swiper CSS para móvil -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+     <script src="https://cdn.lordicon.com/lordicon.js" defer></script>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Modal de Bienvenida -->
+    <div id="welcomeModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Invitación de Boda</h2>
+                <h3 class="modal-names">Rafael <span class="ampersand">&</span> Juana</h3>
+                <p class="modal-subtitle">Bienvenido a nuestra celebración</p>
+                <div class="modal-icon animated-heart">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <defs>
+                            <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ff8e8e;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ff4757;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" 
+                              fill="url(#heartGradient)" stroke="url(#heartGradient)" class="heart-path"></path>
+                        <circle cx="8" cy="8" r="1" fill="#ff6b6b" opacity="0" class="love-particle particle-1">
+                            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0s"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;-5,-10;-10,-20" dur="2s" repeatCount="indefinite" begin="0s"/>
+                        </circle>
+                        <circle cx="16" cy="10" r="0.8" fill="#ff8e8e" opacity="0" class="love-particle particle-2">
+                            <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" begin="0.7s"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;8,-12;15,-25" dur="2.5s" repeatCount="indefinite" begin="0.7s"/>
+                        </circle>
+                        <circle cx="12" cy="6" r="0.6" fill="#ff4757" opacity="0" class="love-particle particle-3">
+                            <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,-18" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+                        </circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="enterWithMusic" class="btn-wedding">🎵 Entrar con Música</button>
+                <button id="enterWithoutMusic" class="btn-outline">🔇 Entrar sin Música</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reproductor de música -->
+    <div id="musicPlayer" class="music-player" style="display: none;">
+        <button id="musicToggle" class="music-button animated-volume" title="Reproducir/Pausar música">
+            <svg id="volumeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <defs>
+                    <linearGradient id="volumeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1abc9c;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#16a085;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" 
+                         fill="url(#volumeGradient)" stroke="url(#volumeGradient)" class="speaker">
+                    <animateTransform attributeName="transform" type="scale" 
+                        values="1;1.1;1" dur="2s" repeatCount="indefinite"/>
+                </polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" 
+                      stroke="url(#volumeGradient)" stroke-width="2" fill="none" opacity="0" class="sound-wave-outer">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+                    <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+                </path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.08" 
+                      stroke="url(#volumeGradient)" stroke-width="2" fill="none" opacity="0" class="sound-wave-inner">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                    <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                </path>
+                <circle cx="13" cy="8" r="0.5" fill="#1abc9c" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite" begin="0s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;3,-2" dur="1s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle cx="13" cy="16" r="0.5" fill="#16a085" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;3,2" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+                </circle>
+                <circle cx="13" cy="12" r="0.8" fill="#27ae60" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;4,0" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+            </svg>
+        </button>
+        <div id="youtube-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
+    </div>
+
+    <!-- Hero Section dividida 50/50 -->
+    <div class="hero-wrapper">
+        <div class="site-container hero-container">
+            <div class="hero-split">
+                <!-- Lado izquierdo: mantiene imagen y efecto scroll -->
+                <div class="hero-left">
+                    <div class="hero-left-bg"></div>
+                </div>
+                <!-- Lado derecho: imagen sin efecto -->
+                <div class="hero-right">
+                    <img id="heroRightImg" alt="Portada lateral derecha" />
+                </div>
+                <script>
+                  (function(){
+                    var img = document.getElementById('heroRightImg');
+                    if(!img) return;
+                    var ids = ['1OD85FypcqBIrtPc498UVRkRXTggDyLc-', '1OD85FypcqBIrtPc498UVRkRXTggDyLc'];
+                    var urls = [];
+                    for (var j = 0; j < ids.length; j++) {
+                      var id = ids[j];
+                      urls.push('https://drive.usercontent.google.com/uc?id=' + id + '&export=download');
+                      urls.push('https://drive.google.com/uc?export=view&id=' + id);
+                      urls.push('https://drive.google.com/uc?id=' + id + '&export=download');
+                      urls.push('https://drive.google.com/thumbnail?id=' + id + '&sz=w2000');
+                    }
+                    var i = 0;
+                    function tryNext(){ if(i >= urls.length) return; img.src = urls[i++]; }
+                    img.onerror = tryNext;
+                    tryNext();
+                  })();
+                </script>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="page-shell">
+        <div class="content">
+            <div class="site-container">
+            <!-- Countdown -->
+            <section class="countdown-section section-block">
+                <svg class="decorative-border countdown-border" width="100%" height="60" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <!-- Definimos el patrón en versión reducida -->
+                    <pattern id="ornamento-linea" x="0" y="0" width="200" height="60" patternUnits="userSpaceOnUse">
+                      <svg viewBox="0 0 600 60" width="200" height="60">
+                        <!-- Línea izquierda -->
+                        <path d="M20,30 Q140,25 260,30 Q140,35 20,30 Z" fill="white"/>
+                        <!-- Línea derecha -->
+                        <path d="M580,30 Q460,25 340,30 Q460,35 580,30 Z" fill="white"/>
+                        <!-- Tres puntos en el centro -->
+                        <circle cx="285" cy="30" r="3" fill="white"/>
+                        <circle cx="300" cy="30" r="4" fill="white"/>
+                        <circle cx="315" cy="30" r="3" fill="white"/>
+                      </svg>
+                    </pattern>
+                  </defs>
+
+                  <!-- Aquí se dibuja la franja en una sola línea -->
+                  <rect width="100%" height="60" fill="url(#ornamento-linea)" />
+                </svg>
+                <h2 class="section-title">Falta</h2>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">DÍAS</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">HS</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">MIN</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">SEG</div>
+                    </div>
+                </div>
+                <div class="countdown-heart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" aria-hidden="true">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <svg class="decorative-border countdown-border" width="100%" height="60" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <!-- Definimos el patrón en versión reducida -->
+                    <pattern id="ornamento-linea" x="0" y="0" width="200" height="60" patternUnits="userSpaceOnUse">
+                      <svg viewBox="0 0 600 60" width="200" height="60">
+                        <!-- Línea izquierda -->
+                        <path d="M20,30 Q140,25 260,30 Q140,35 20,30 Z" fill="white"/>
+                        <!-- Línea derecha -->
+                        <path d="M580,30 Q460,25 340,30 Q460,35 580,30 Z" fill="white"/>
+                        <!-- Tres puntos en el centro -->
+                        <circle cx="285" cy="30" r="3" fill="white"/>
+                        <circle cx="300" cy="30" r="4" fill="white"/>
+                        <circle cx="315" cy="30" r="3" fill="white"/>
+                      </svg>
+                    </pattern>
+                  </defs>
+
+                  <!-- Aquí se dibuja la franja en una sola línea -->
+                  <rect width="100%" height="60" fill="url(#ornamento-linea)" />
+                </svg>
+            </section>
+
+            <!-- Ceremony & Celebration -->
+            <section class="events-section section-block">
+                <div class="events-container">
+                    <!-- Ceremony -->
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/nvsfzbop.json"
+                                trigger="loop"
+                                colors="primary:#ffffff,secondary:#ffffff"
+                                style="width:340px;height:340px">
+                            </lord-icon>
+                        </div>
+                        <h3 class="event-title">Ceremonia</h3>
+                        <div class="event-title-underline" aria-hidden="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" role="presentation">
+                            <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                              <path d="M 80 40 L 560 40 Q 600 40 600 68 Q 600 40 640 40 L 1120 40" />
+                            </g>
+                            <path d="M 600 68 l 14 18 -14 18 -14 -18 z" fill="currentColor" />
+                            <path d="M 320 40 l 40 0 -20 20 z" fill="currentColor" />
+                            <path d="M 880 40 l 40 0 -20 20 z" fill="currentColor" />
+                          </svg>
+                        </div>
+                        <div class="event-details">
+                            <h4>Día</h4>
+                            <p>Sábado 15 de Agosto - 10hs</p>
+                        </div>
+                        <div class="event-details">
+                            <h4>Lugar</h4>
+                            <p>Parroquia Nuestra Señora de Lujan</p>
+                            <p class="event-address">Av. Pergamino 203 - Santo Domingo</p>
+                        </div>
+                        <button class="btn-wedding" onclick="openLocation('ceremony')">¿Cómo llegar?</button>
+                    </div>
+
+                    <!-- Celebration -->
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/ohcuigqh.json"
+                                trigger="loop"
+                                colors="primary:#ffffff,secondary:#ffffff"
+                                style="width:340px;height:340px">
+                            </lord-icon>
+                        </div>
+                        <h3 class="event-title">Celebración</h3>
+                        <div class="event-title-underline" aria-hidden="true">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" role="presentation">
+                            <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                              <path d="M 80 40 L 560 40 Q 600 40 600 68 Q 600 40 640 40 L 1120 40" />
+                            </g>
+                            <path d="M 600 68 l 14 18 -14 18 -14 -18 z" fill="currentColor" />
+                            <path d="M 320 40 l 40 0 -20 20 z" fill="currentColor" />
+                            <path d="M 880 40 l 40 0 -20 20 z" fill="currentColor" />
+                          </svg>
+                        </div>
+                        <div class="event-details">
+                            <h4>Día</h4>
+                            <p>Sábado 15 de Agosto - 20hs</p>
+                        </div>
+                        <div class="event-details">
+                            <h4>Lugar</h4>
+                            <p>Salón de fiestas Avril</p>
+                            <p class="event-address">Av. Los Reartes 12 - Santo Domingo</p>
+                        </div>
+                        <button class="btn-wedding" onclick="openLocation('celebration')">¿Cómo llegar?</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section class="gallery-section section-block">
+                <svg class="gallery-border top" width="100%" height="60" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="ornamento-linea-gallery-top" x="0" y="0" width="200" height="60" patternUnits="userSpaceOnUse">
+                      <svg viewBox="0 0 600 60" width="200" height="60">
+                        <path d="M20,30 Q140,25 260,30 Q140,35 20,30 Z" fill="white"/>
+                        <path d="M580,30 Q460,25 340,30 Q460,35 580,30 Z" fill="white"/>
+                        <circle cx="285" cy="30" r="3" fill="white"/>
+                        <circle cx="300" cy="30" r="4" fill="white"/>
+                        <circle cx="315" cy="30" r="3" fill="white"/>
+                      </svg>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="60" fill="url(#ornamento-linea-gallery-top)" />
+                </svg>
+                <div class="gallery-container">
+                    <div class="gallery-ornament" aria-hidden="true">
+<svg id="ornamento-animado" viewBox="0 0 1200 200" style="width:100%;height:auto;display:block" aria-hidden="true" role="presentation">
+  <defs>
+    <style>
+      #ornamento-animado .stroke { --ornament-color: #ffffff; --ornament-stroke: 2; stroke: var(--ornament-color); fill: none; stroke-width: var(--ornament-stroke); stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+      #ornamento-animado .draw { stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0; animation: draw 2.2s ease-in-out var(--delay, 0s) infinite; }
+      @keyframes draw { 0% { stroke-dashoffset: 100; opacity: 0; } 15% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+    </style>
+  </defs>
+  <g class="stroke">
+    <line class="draw" pathLength="100" style="--delay: 0s" x1="150" y1="100" x2="500" y2="100"/>
+    <line class="draw" pathLength="100" style="--delay: 0.1s" x1="700" y1="100" x2="1050" y2="100"/>
+    <g id="end-ornament-left">
+      <polygon class="draw" pathLength="100" style="--delay: 0.25s" points="90,100 120,85 150,100 120,115 90,100"/>
+      <path class="draw" pathLength="100" style="--delay: 0.35s" d="M90,100 C70,85 60,85 50,100 C60,115 70,115 90,100 Z"/>
+      <circle class="draw" pathLength="100" style="--delay: 0.45s" cx="65" cy="100" r="4"/>
+    </g>
+    <g transform="translate(1200,0) scale(-1,1)">
+      <use href="#end-ornament-left"/>
+    </g>
+    <path pathLength="100" d="M600,100 C640,60 700,60 740,100 C700,140 640,140 600,100"/>
+    <path pathLength="100" d="M600,100 C560,60 500,60 460,100 C500,140 560,140 600,100"/>
+    <path class="draw" pathLength="100" style="--delay: 0.9s" d="M520,100 C535,92 552,92 560,100 C552,108 535,108 520,100 Z"/>
+    <path class="draw" pathLength="100" style="--delay: 1.0s" d="M680,100 C665,92 648,92 640,100 C648,108 665,108 680,100 Z"/>
+    <line class="draw" pathLength="100" style="--delay: 1.15s" x1="590" y1="86" x2="620" y2="74"/>
+    <line class="draw" pathLength="100" style="--delay: 1.25s" x1="586" y1="92" x2="616" y2="80"/>
+    <line class="draw" pathLength="100" style="--delay: 1.35s" x1="582" y1="98" x2="612" y2="86"/>
+  </g>
+</svg>
+                    </div>
+                    <h2 class="section-title">Retratos de Nuestro Amor</h2>
+                    <p class="section-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
+                    
+                    <div class="animated-camera" title="Galería de fotos">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wsaaegar.json"
+                            trigger="loop"
+                            colors="primary:#ffffff,secondary:#ffffff"
+                            style="width:300px;height:300px">
+                        </lord-icon>
+                    </div>
+
+                    <!-- Carrusel -->
+                    <div class="carousel-container">
+                        <!-- Carrusel original para desktop -->
+                        <div class="carousel-desktop">
+                            <button class="carousel-btn carousel-prev" id="prevBtn">❮</button>
+                            <div class="carousel-track-container">
+                                <div class="carousel-track" id="carouselTrack">
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop&crop=center" alt="Pareja de novios en ceremonia">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=400&fit=crop&crop=center" alt="Anillos de boda">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop&crop=center" alt="Pareja romántica en jardín">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=400&fit=crop&crop=center" alt="Decoración de boda">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://i.ibb.co/5hx66c8x/food-and-wine-festivals-768x513.jpg" alt="Mesa de boda elegante">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://i.ibb.co/8DpG2G5y/R.jpg" alt="Pareja bailando">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop&crop=center" alt="Vestido de novia elegante">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-btn carousel-next" id="nextBtn">❯</button>
+                        </div>
+
+                        <!-- Carrusel Swiper para móvil -->
+                        <div class="carousel-mobile">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop&crop=center" alt="Pareja de novios en ceremonia">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=400&fit=crop&crop=center" alt="Anillos de boda">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop&crop=center" alt="Pareja romántica en jardín">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=400&fit=crop&crop=center" alt="Decoración de boda">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&h=400&fit=crop&crop=center" alt="Mesa de boda elegante">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop&crop=center" alt="Vestido de novia elegante">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop&crop=center" alt="Manos con anillos de compromiso">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img loading="lazy" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400&h=400&fit=crop&crop=center" alt="Pareja en la playa al atardecer">
+                                    </div>
+                                </div>
+                                <!-- Flechas -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <!-- Paginación -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-counter">
+                        <span id="currentSlide">1</span> / <span id="totalSlides">12</span> fotos
+                    </div>
+                </div>
+                <svg class="gallery-border bottom" width="100%" height="60" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="ornamento-linea-gallery-bottom" x="0" y="0" width="200" height="60" patternUnits="userSpaceOnUse">
+                      <svg viewBox="0 0 600 60" width="200" height="60">
+                        <path d="M20,30 Q140,25 260,30 Q140,35 20,30 Z" fill="white"/>
+                        <path d="M580,30 Q460,25 340,30 Q460,35 580,30 Z" fill="white"/>
+                        <circle cx="285" cy="30" r="3" fill="white"/>
+                        <circle cx="300" cy="30" r="4" fill="white"/>
+                        <circle cx="315" cy="30" r="3" fill="white"/>
+                      </svg>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="60" fill="url(#ornamento-linea-gallery-bottom)" />
+                </svg>
+            </section>
+
+            <!-- Party Information -->
+            <section class="party-section section-block">
+                <div class="party-container">
+                    <h2 class="section-title">Fiesta</h2>
+                    <p class="section-subtitle">Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.</p>
+
+                    <div class="party-grid">
+                        <div class="party-card">
+                            <div class="party-icon icon-music">
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/gcupmfyg.json"
+                                    trigger="loop"
+                                    colors="primary:#ffffff,secondary:#ffffff"
+                                    style="width:110px;height:110px">
+                                </lord-icon>
+                            </div>
+                            <h3 class="event-title">Música</h3>
+                            <p>¡Preparen sus mejores pasos! Tendremos pista abierta toda la noche.</p>
+                            <button class="btn-wedding" onclick="suggestMusic()">Sugerir canción</button>
+                        </div>
+                                                <div class="party-card">
+                            <div class="party-icon icon-dress">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" class="bowtie-anim">
+  <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="6,12 28,24 6,36" fill="transparent"></polygon>
+    <rect x="28" y="20" width="8" height="8" rx="2" fill="transparent"></rect>
+    <polygon points="58,12 36,24 58,36" fill="transparent"></polygon>
+  </g>
+</svg>
+                            </div>
+                            <h3 class="event-title">Dress Code</h3>
+                            <p>Elegante sport, colores cálidos y detalles dorados.</p>
+                            <button class="btn-wedding" onclick="showDressCode()">Ver más</button>
+                        </div>
+                                                <div class="party-card">
+                            <div class="party-icon icon-details">
+                                                                                                <lord-icon
+      src="https://cdn.lordicon.com/fikcyfpp.json"
+      trigger="loop"
+      colors="primary:#ffffff,secondary:#ffffff"
+           style="width:110px;height:110px">
+    </lord-icon>
+                            </div>
+                            <h3 class="event-title">Detalles</h3>
+                            <p>Habrá sorpresas durante la noche, no llegues tarde.</p>
+                            <button class="btn-wedding" onclick="showTips()">Más info</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gifts & RSVP -->
+            <section class="gifts-section section-block">
+                <div class="gifts-container">
+                    <h2 class="section-title">Nuestro regalo es tu presencia</h2>
+                    <p class="section-subtitle">Si aun así deseas hacernos un obsequio, te dejamos estas opciones</p>
+                                            <div class="gift-icon">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/hwfggmas.json"
+                            trigger="hover"
+                            colors="primary:#e4e4e4,secondary:#e8b730"
+                            style="width:320px;height:320px">
+                        </lord-icon>
+                    </div>
+                    <p>Alias: <strong>rafa-y-juana</strong></p>
+                    <button class="btn-wedding" onclick="showGifts()">Ver más</button>
+                </div>
+            </section>
+
+            <section class="rsvp-section section-block">
+                <div class="rsvp-container">
+                    <h2 class="section-title">Confirma tu asistencia</h2>
+                    <p class="section-subtitle">Tu respuesta nos ayuda a organizar todo mejor</p>
+                    <div class="whatsapp-icon animated-whatsapp">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.6-5.945C.122 5.29 5.33 0 12.057 0c3.14 0 6.087 1.223 8.312 3.447a11.7 11.7 0 013.448 8.291c-.002 6.73-5.21 11.938-11.94 11.938a11.95 11.95 0 01-6.09-1.616L.057 24zm6.597-3.807c1.742.995 3.276 1.591 5.392 1.593 5.448 0 9.89-4.434 9.894-9.882.002-5.462-4.415-9.89-9.88-9.893-5.462-.003-9.89 4.415-9.893 9.88-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.74-.98zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.48 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
+                        </svg>
+                    </div>
+                    <p>Envíanos un mensaje para confirmar tu presencia.</p>
+                    <button class="btn-wedding" onclick="confirmAttendance()">Confirmar asistencia</button>
+                    <p class="hashtag">#RafaelYJuana</p>
+                </div>
+            </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">
+        <div id="toastContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Rafael & Juana</h3>
+            <p class="footer-date">15 de Agosto de 2025</p>
+        </div>
+    </footer>
+
+    <script src="java2.js"></script>
+    <!-- Swiper JS para móvil -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Inicializar Swiper solo en móvil
+        if (window.innerWidth <= 768) {
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                centeredSlides: true,
+                loop: true,
+                spaceBetween: 0,
+                autoplay: { delay: 3000, disableOnInteraction: false },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        }
+    </script>
+</body>
+</html>

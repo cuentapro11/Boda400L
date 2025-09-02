@@ -1,0 +1,2263 @@
+/* Variables CSS */
+/* Variables CSS */
+:root {
+    --background: 35 25% 95%;
+    --foreground: 30 20% 15%;
+    --primary: 35 65% 45%;
+    --primary-foreground: 35 25% 95%;
+    --gold: 42 85% 55%;
+    --gold-light: 42 80% 70%;
+    --gold-dark: 42 75% 40%;
+    --brown: 35 65% 45%;
+    --brown-light: 35 50% 60%;
+    --brown-dark: 35 70% 30%;
+    --cream: 35 25% 95%;
+    --warm-white: 35 15% 98%;
+    --shadow-elegant: 0 10px 30px -10px hsl(35 65% 45% / 0.3);
+    --shadow-gold: 0 4px 20px hsl(42 85% 55% / 0.25);
+    /* Nuevo tono para laterales tipo papel (blanco piedra) */
+    --paper-side: 0 0% 97%;
+}
+
+/* Contenedor centrado tipo tarjeta */
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+    background: transparent; /* fondo y sombra ahora los maneja page-shell */
+    box-shadow: none;
+}
+
+/* Contenedor envolvente para sombra continua a lo largo de toda la página */
+.page-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Animaciones de iconos modernos */
+.animated-heart {
+    transition: transform 0.3s ease;
+}
+
+.animated-heart:hover {
+    transform: scale(1.1);
+}
+
+.animated-heart .heart-path {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6));
+}
+
+.animated-celebration {
+    transition: transform 0.3s ease;
+}
+
+.animated-celebration:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.animated-camera:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera svg .sway { stroke: #ffffff; stroke-width: 3.5; }
+.animated-camera svg circle, .animated-camera svg path, .animated-camera svg rect { stroke: #ffffff; stroke-width: 3.5; }
+.animated-camera svg .flash-effect { fill: #ffffff; }
+
+.animated-camera:hover .flash-effect, .animated-camera:active .flash-effect {
+    animation: cameraFlash 0.28s ease-in-out;
+}
+
+@keyframes cameraFlash {
+    0% { opacity: 0; r: 0; }
+    50% { opacity: 1; r: 14; }
+    100% { opacity: 0; r: 0; }
+}
+
+.animated-music {
+    transition: transform 0.3s ease;
+}
+
+.animated-music:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.animated-dresscode {
+    transition: transform 0.3s ease;
+}
+
+.animated-dresscode:hover {
+    transform: scale(1.1);
+}
+
+.animated-clipboard {
+    transition: transform 0.3s ease;
+}
+
+.animated-clipboard:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift {
+    transition: transform 0.3s ease;
+}
+
+.animated-gift:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift:hover .gift-lid {
+    animation: giftOpen 0.5s ease-in-out;
+}
+
+@keyframes giftOpen {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px) rotateX(10deg); }
+    100% { transform: translateY(0); }
+}
+
+.animated-whatsapp {
+    transition: transform 0.3s ease;
+}
+
+.animated-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.animated-volume {
+    transition: transform 0.3s ease;
+}
+
+.animated-volume:hover {
+    transform: scale(1.1);
+}
+
+/* Efectos globales para iconos */
+.event-icon, .party-icon, .gift-icon, .whatsapp-icon, .camera-icon, .modal-icon {
+    overflow: visible;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
+}
+
+.event-icon, .party-icon, .gift-icon {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Mejoras de rendimiento */
+.animated-heart svg,
+.animated-celebration svg,
+.animated-camera svg,
+.animated-music svg,
+.animated-dresscode svg,
+.animated-clipboard svg,
+.animated-gift svg,
+.animated-whatsapp svg,
+.animated-volume svg {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--cream)); /* igual que el fondo inferior */
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+}
+
+/* Tipografía */
+.names {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Modal de Bienvenida */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-elegant);
+    border: 2px solid hsl(var(--gold) / 0.2);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.modal-names {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.modal-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 2rem;
+}
+
+.modal-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--brown) / 0.3);
+    background: transparent;
+    color: hsl(var(--brown));
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-outline:hover {
+    background: hsl(var(--brown) / 0.1);
+    border-color: hsl(var(--brown));
+}
+
+/* Reproductor de música */
+.music-player {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.music-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--brown)), hsl(var(--gold)));
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Hero Section dividida 50/50 */
+.hero-wrapper {
+    position: relative;
+    z-index: 0;
+    padding: 2rem 0; /* para que respire como el resto del contenido */
+}
+
+/* Para centrar la grilla de portada igual que el resto */
+.hero-container {
+    max-width: 1100px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 72vh; /* ajusta para menos recorte */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none; /* la sombra viene del contenedor padre */
+    background: transparent; /* sin fondo para igualar el blanco */
+}
+
+/* Lado izquierdo: contenedor del parallax */
+.hero-left {
+	position: relative;
+	overflow: hidden;
+}
+
+/* Capa de fondo que se mueve con el scroll */
+.hero-left-bg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('https://i.ibb.co/ksRmXf76/Dise-o-sin-t-tulo-1.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center top;
+	transform: translateY(0);
+	will-change: transform;
+}
+
+/* Lado derecho: sin efecto, solo imagen estática */
+.hero-right {
+    position: relative;
+    overflow: hidden;
+    background: transparent; /* igualar blancos */
+}
+
+.hero-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.hero-text {
+    max-width: 32rem;
+}
+
+.date {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.names {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.ampersand {
+    color: hsl(var(--gold));
+}
+
+.quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.scroll-indicator {
+    animation: bounce 2s infinite;
+}
+
+.scroll-mouse {
+    width: 1.5rem;
+    height: 2.5rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.scroll-wheel {
+    width: 0.25rem;
+    height: 0.75rem;
+    background: white;
+    border-radius: 0.125rem;
+    margin-top: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 1;
+    /* Ya no empuja 100vh completos porque la portada es 60vh */
+    margin-top: 0;
+    background: hsl(var(--cream));
+}
+
+/* Sections */
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section {
+    padding: 4rem 1rem;
+}
+
+/* Reducir altura de la sección de galería en un 40% */
+.gallery-section {
+    padding: 2.4rem 1rem; /* Reducido de 4rem a 2.4rem (40% menos) */
+}
+
+.gallery-section,
+.gifts-section {
+    background-color: hsl(var(--warm-white));
+}
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid hsl(var(--gold) / 0.25);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    padding: 3.25rem 1rem; /* un poco más largo */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 48rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-number {
+    font-size: 3.25rem; /* un poco más pequeño */
+    font-weight: 800;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.25rem;
+    animation: flip-in 0.6s ease-out;
+    letter-spacing: 0.02em;
+}
+
+.countdown-label {
+    font-size: 0.85rem;
+    color: hsl(var(--brown));
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.9;
+}
+
+.countdown-separator {
+    font-size: 2rem;
+    color: hsl(var(--brown-light));
+}
+
+/* Events */
+.events-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+}
+
+.event-card {
+    text-align: center;
+}
+
+.event-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.celebration-icon {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.glass {
+    width: 1.5rem;
+    height: 2rem;
+    background-color: hsl(var(--gold));
+    border-radius: 0.125rem;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1.5rem;
+}
+
+.event-details {
+    margin-bottom: 1.5rem;
+}
+
+.event-details h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.5rem;
+}
+
+.event-details p {
+    color: hsl(var(--foreground) / 0.7);
+}
+
+.event-address {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-wedding {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--brown)), hsl(var(--gold)));
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-wedding:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Gallery */
+.gallery-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 3rem;
+}
+
+.animated-camera {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+}
+/* Make the icon clickable with a subtle press flash */
+.animated-camera:active .flash-effect {
+    animation: cameraFlash 0.3s ease-in-out;
+}
+
+/* Carrusel */
+.carousel-container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+}
+@media (min-width: 1280px) {
+  .carousel-container { max-width: 1200px; }
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-elegant);
+    position: relative;
+    padding-top: 60px;  /* espacio para borde superior */
+    padding-bottom: 60px; /* espacio para borde inferior */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 0; /* evitar huecos */
+    justify-content: flex-start !important; /* evitar centrado que genera huecos */
+}
+
+/* Ornamentos internos del carrusel */
+.carousel-ornament { position: absolute; left: 0; width: 100%; height: 60px; display: block; z-index: 1; pointer-events: none; }
+.carousel-ornament.top { top: 0; }
+.carousel-ornament.bottom { bottom: 0; }
+
+.carousel-item {
+    flex: 0 0 33.333%; /* 3 en desktop */
+    max-width: 33.333%;
+    height: 400px;
+    box-sizing: border-box; /* que el borde no sume al ancho */
+}
+@media (max-width: 1024px) {
+  .carousel-item { flex: 0 0 50%; max-width: 50%; }
+}
+@media (max-width: 768px) {
+  .carousel-item { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Forzar reglas dentro de la galería (algunas tenían !important con centrado) */
+.gallery-section .carousel-track { gap: 0 !important; justify-content: flex-start !important; }
+.gallery-section .carousel-track-container { padding-left: 0 !important; padding-right: 0 !important; }
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: hsl(var(--brown));
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-counter {
+    text-align: center;
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Party */
+.party-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.party-card {
+    padding: 2rem;
+    border: 2px solid hsl(var(--gold) / 0.2);
+    border-radius: 0.5rem;
+    background-color: hsl(var(--warm-white));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.party-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.party-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.party-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.party-card p {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 1.5rem;
+}
+
+/* Gifts */
+.gifts-container,
+.rsvp-container {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gift-icon,
+.whatsapp-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.whatsapp-icon {
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* RSVP */
+.hashtag {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 2rem;
+}
+
+/* Footer */
+.footer {
+    background-color: hsl(var(--brown));
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.footer-date {
+    color: hsl(var(--gold));
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background: white;
+    border: 1px solid hsl(var(--gold));
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: var(--shadow-elegant);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    max-width: 300px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes flip-in {
+    0% { transform: rotateY(180deg); opacity: 0; }
+    100% { transform: rotateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hero-split { grid-template-columns: 1fr; height: 60vh; }
+}
+
+@media (max-width: 768px) {
+    .names { font-size: 3rem; }
+    body { background-image: none; background-color: hsl(var(--warm-white)); }
+    .site-container { padding: 0 0; max-width: none; }
+    .page-shell { box-shadow: none; margin: 0; }
+    .hero-split { border-radius: 0; height: 70vh; }
+    .hero-right img { object-position: center; }
+
+    .section-title { font-size: 2.2rem; }
+    .countdown-number { font-size: 3.4rem; }
+    .countdown-container { gap: 1.25rem; }
+
+    .events-container { grid-template-columns: 1fr; gap: 2rem; }
+    .party-grid { grid-template-columns: 1fr; }
+
+    .carousel-item { height: 320px; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 1rem; }
+
+    /* Full-bleed on mobile */
+    html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+    .content, .page-shell, .site-container, .section-block { width: 100vw; margin: 0; }
+}
+
+@media (max-width: 480px) {
+    .names { font-size: 2.4rem; }
+    .quote { font-size: 1rem; }
+    .countdown-number { font-size: 3rem; }
+    .hero-split { height: 78vh; }
+    .carousel-item { height: 360px; }
+    .modal-content { padding: 1.5rem; }
+    .modal-names { font-size: 1.5rem; }
+    .site-container, .page-shell, .content { padding-left: 0; padding-right: 0; }
+}
+
+/* =======================
+   Theme overrides (Gold)
+   ======================= */
+:root {
+  --gold-main-light: #d4a24c;
+  --gold-main-dark: #a67c2d;
+  --text-gold: #a67c2d;
+  --text-gray: #666666;
+}
+
+body {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  color: var(--text-gray);
+  background-color: #ffffff;
+}
+
+.section-title {
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  color: var(--text-gold);
+}
+
+/* Countdown */
+.countdown-section {
+  background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark));
+  border: none;
+  color: #ffffff;
+}
+.countdown-section .section-title,
+.countdown-number,
+.countdown-label,
+.countdown-separator {
+  color: #ffffff;
+}
+.countdown-number { font-size: 3.5rem; }
+.countdown-heart { margin-top: 1.25rem; display: flex; justify-content: center; }
+.countdown-heart svg { width: 28px; height: 28px; }
+.countdown-heart svg * { stroke: #ffffff; fill: #ffffff; }
+
+/* Galería: reducir altura visual sin afectar tamaños internos */
+.gallery-section { padding: 1.5rem 0.75rem; }
+
+/* Events: vertical cards aligned horizontally, gold gradient */
+.events-section { background-color: #ffffff; }
+.events-section .events-container { align-items: stretch; }
+.events-section .event-card {
+  background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark));
+  border-radius: 12px;
+  padding: 2rem;
+  color: #ffffff;
+  position: relative;
+  border: 2px dotted rgba(255,255,255,0.6);
+}
+.events-section .event-title,
+.events-section .event-details h4,
+.events-section .event-details p,
+.events-section .event-address { color: #ffffff; }
+.events-section .event-icon {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 90px; height: 90px;
+  margin: 0 auto 1rem;
+}
+ .events-section .event-icon lord-icon { width: 90px !important; height: 90px !important; }
+.events-section .event-icon svg * {
+  stroke: #ffffff !important;
+  fill: none !important;
+  filter: none;
+}
+.events-section .event-card::before,
+.events-section .event-card::after {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+  border: 2px solid rgba(255,255,255,0.7);
+  transform: rotate(45deg);
+}
+.events-section .event-card::before { top: -6px; left: -6px; }
+.events-section .event-card::after { bottom: -6px; right: -6px; }
+
+/* Buttons */
+.btn-wedding {
+  border-radius: 8px;
+  background: var(--gold-main-light);
+}
+.btn-wedding:hover { background: var(--gold-main-dark); }
+
+/* Gallery / Carousel */
+.gallery-section {
+  background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark));
+  color: #ffffff;
+}
+.gallery-section .section-title { margin-top: 0.3rem; margin-bottom: 0.15rem; } /* Reducido de 0.5rem/0.25rem a 0.3rem/0.15rem (40% menos) */
+.gallery-section .section-subtitle { margin-bottom: 0.45rem; } /* Reducido de 0.75rem a 0.45rem (40% menos) */
+.gallery-section .animated-camera { margin-bottom: 0.6rem; } /* Reducido de 1rem a 0.6rem (40% menos) */
+.gallery-section .carousel-container { margin: 0 auto 0.45rem; } /* Reducido de 0.75rem a 0.45rem (40% menos) */
+.gallery-section .section-title { color: var(--text-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+.gallery-section .section-subtitle { color: #cccccc; }
+
+.carousel-track { gap: 1rem; }
+.carousel-item {
+  flex: 0 0 calc(33.333% - 0.666rem);
+  background: #ffffff;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 10px 10px 32px; /* polaroid bottom space (más grande) */
+}
+.carousel-item img { border: 1px solid #f5f5f5; }
+
+/* Alternating sections */
+.party-section { background: #ffffff; }
+.gifts-section {
+  background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark));
+  color: #ffffff;
+}
+.gifts-section .section-title,
+.gifts-section .section-subtitle,
+.gifts-section p { color: #ffffff; }
+.rsvp-section { background: #ffffff; }
+
+/* Decorative separators between sections */
+.content section + section {
+  position: relative;
+}
+.content section + section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 10px;
+  background: linear-gradient(90deg, transparent, rgba(164,124,45,0.6), transparent);
+  border-radius: 999px;
+}
+
+/* Decorative heart accents for separators */
+.content section + section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  width: 220px;
+  height: 22px;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a24c' stroke='%23a67c2d' stroke-width='1.5'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a24c' stroke='%23a67c2d' stroke-width='1.5'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 18px 18px, 18px 18px;
+  background-position: calc(50% - 90px) center, calc(50% + 90px) center;
+  opacity: 0.95;
+}
+
+/* Responsive carousel widths */
+@media (max-width: 768px) {
+  .carousel-item { flex: 0 0 100%; }
+}
+
+
+@media (max-width: 768px) {
+  .content section + section::after {
+    width: 160px;
+    background-position: calc(50% - 60px) center, calc(50% + 60px) center;
+    background-size: 16px 16px, 16px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content section + section::after {
+    width: 120px;
+    background-position: calc(50% - 45px) center, calc(50% + 45px) center;
+    background-size: 14px 14px, 14px 14px;
+  }
+}
+
+/* Heartbeat animation for separators */
+@keyframes subtleHeartbeat {
+  0%, 100% { transform: translate(-50%, -70%) scale(1); opacity: 0.95; }
+  50% { transform: translate(-50%, -70%) scale(1.06); opacity: 1; }
+}
+
+.separator-pulse::after {
+  animation: subtleHeartbeat 2.6s ease-in-out infinite;
+}
+
+/* Full-bleed section block */
+.section-block {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 5rem 0;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure square corners for countdown container */
+.countdown-section { border-radius: 0 !important; }
+
+/* White text on golden sections */
+.countdown-section,
+.gallery-section,
+.gifts-section {
+  color: #ffffff;
+}
+.countdown-section .section-title,
+.gallery-section .section-title,
+.gifts-section .section-title,
+.countdown-section .section-subtitle,
+.gallery-section .section-subtitle,
+.gifts-section .section-subtitle {
+  color: #ffffff;
+}
+
+/* Constrain inner content inside full-bleed sections */
+.section-block > * {
+  max-width: 1280px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* Full-bleed background wrapper using pseudo-element to avoid layout shift */
+.section-block::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  box-shadow: 0 16px 30px rgba(0,0,0,0.10), 0 3px 8px rgba(0,0,0,0.06);
+}
+
+/* Apply background colors/gradients to the pseudo-element */
+.countdown-section.section-block::before { background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark)); }
+.gallery-section.section-block::before { background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark)); }
+.gallery-border { display:block; width:100%; height:60px; }
+.gifts-section.section-block::before { background: linear-gradient(180deg, var(--gold-main-light), var(--gold-main-dark)); }
+.events-section.section-block::before { background: #ffffff; }
+.party-section.section-block::before { background: #ffffff; }
+.rsvp-section.section-block::before { background: #ffffff; }
+
+
+@media (min-width: 1280px) {
+  .section-block { padding: 6.5rem 0; }
+  .carousel-track { gap: 1.5rem; }
+}
+
+/* Cap carousel item height */
+.carousel-item { max-height: 520px; }
+
+/* Alternate object-position for polaroid variety */
+.carousel-track .carousel-item:nth-child(3n+1) img { object-position: top; }
+.carousel-track .carousel-item:nth-child(3n+2) img { object-position: center; }
+.carousel-track .carousel-item:nth-child(3n+3) img { object-position: bottom; }
+
+/* Polaroid shadow variants */
+.carousel-track .carousel-item:nth-child(3n+1) {
+  box-shadow: 0 12px 24px rgba(166, 124, 45, 0.18), 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.carousel-track .carousel-item:nth-child(3n+2) {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+.carousel-track .carousel-item:nth-child(3n+3) {
+  box-shadow: 0 10px 22px rgba(212, 162, 76, 0.18), 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle polaroid tilt (md and up) */
+@media (min-width: 768px) {
+  .carousel-item { transform-origin: center 85%; transition: transform 200ms ease; }
+  .carousel-track .carousel-item:nth-child(3n+1) { transform: rotate(-1.2deg); }
+  .carousel-track .carousel-item:nth-child(3n+2) { transform: rotate(0.6deg); }
+  .carousel-track .carousel-item:nth-child(3n+3) { transform: rotate(-0.4deg); }
+
+  .carousel-track .carousel-item:nth-child(3n+1):hover { transform: rotate(-1.2deg) translateY(-2px) scale(1.01); }
+  .carousel-track .carousel-item:nth-child(3n+2):hover { transform: rotate(0.6deg) translateY(-2px) scale(1.01); }
+  .carousel-track .carousel-item:nth-child(3n+3):hover { transform: rotate(-0.4deg) translateY(-2px) scale(1.01); }
+}
+
+/* Centro destacado en desktop: sobresale siempre */
+@media (min-width: 1025px) {
+  .carousel-item.is-center {
+    transform: scale(1.09) !important;
+    z-index: 3;
+    box-shadow: 0 18px 34px rgba(0,0,0,0.22), 0 6px 14px rgba(0,0,0,0.10) !important;
+  }
+}
+
+/* Countdown compact with decorative white border */
+.countdown-section {
+  padding: 1.75rem 0.75rem;
+  border: 2px solid rgba(255,255,255,0.9);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.25);
+}
+.countdown-section .section-title { font-size: 2.2rem; margin-bottom: 0.5rem; }
+.countdown-container { gap: 1rem; }
+.countdown-number { font-size: 2.6rem; }
+.countdown-label { font-size: 0.75rem; letter-spacing: 0.16em; }
+
+/* Events: slimmer and taller with extra inner outline */
+.events-container { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.events-section .event-card {
+  max-width: 360px;
+  min-height: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35);
+}
+
+/* Event cards extra decorative border (outer) */
+.events-section .event-card {
+  outline: 2px dotted rgba(255,255,255,0.5);
+  outline-offset: -10px;
+}
+
+/* Carousel: decorative white border and corners */
+.carousel-track-container {
+  border: 2px solid rgba(255,255,255,0.95);
+  position: relative;
+}
+.carousel-track-container::before,
+.carousel-track-container::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.9);
+  transform: rotate(45deg);
+  z-index: 2;
+}
+.carousel-track-container::before { top: 8px; left: 8px; }
+.carousel-track-container::after { bottom: 8px; right: 8px; }
+
+/* Party cards: decorative gold border and corners */
+.party-card {
+  border: 2px dotted hsl(var(--gold));
+  position: relative;
+}
+.party-card::before,
+.party-card::after {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+  border: 2px solid hsl(var(--gold));
+  transform: rotate(45deg);
+}
+.party-card::before { top: -6px; left: -6px; }
+.party-card::after { bottom: -6px; right: -6px; }
+
+/* Enhanced fluid icon animations */
+@keyframes sway {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animated-dresscode svg { animation: sway 3.2s ease-in-out infinite; }
+.animated-clipboard svg { animation: floatY 3s ease-in-out infinite; }
+.animated-music svg { animation: floatY 2.6s ease-out infinite; }
+
+/* Party icons fluid animation adjustments */
+.party-card .party-icon svg { will-change: transform; }
+.party-card .animated-music svg { animation-duration: 2.2s; }
+.party-card .animated-dresscode svg { animation-duration: 2.8s; }
+.party-card .animated-clipboard svg { animation-duration: 2.4s; }
+
+/* Gifts: white decorative border around content */
+.gifts-container {
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+}
+.gifts-container::before,
+.gifts-container::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 2px solid #ffffff;
+  transform: rotate(45deg);
+}
+.gifts-container::before { top: -7px; left: -7px; }
+.gifts-container::after { bottom: -7px; right: -7px; }
+
+/* Side borders on sections (default gold) */
+.section-block {
+  border-left: 6px double hsl(var(--gold));
+  border-right: 6px double hsl(var(--gold));
+}
+/* Invert side borders for golden background sections */
+.countdown-section.section-block,
+.gallery-section.section-block,
+.gifts-section.section-block {
+  border-left-color: #ffffff;
+  border-right-color: #ffffff;
+}
+/* Remove side borders specifically for the events section */
+.events-section.section-block {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Countdown: more striking decorative border */
+.countdown-section {
+  position: relative;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 0 0 6px rgba(255,255,255,0.15) inset, 0 0 0 1px rgba(255,255,255,0.5);
+}
+.countdown-section::before,
+.countdown-section::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 2px solid #ffffff;
+  transform: rotate(45deg);
+}
+.countdown-section::before { top: -8px; left: -8px; }
+.countdown-section::after { bottom: -8px; right: -8px; }
+
+/* Carousel: remove inner border and move decorative frame to whole gallery section */
+.carousel-track-container { border: none !important; }
+.carousel-track-container::before,
+.carousel-track-container::after { display: none !important; }
+
+/* Gallery section full frame */
+.gallery-section.section-block {
+  position: relative;
+  border: 4px solid #ffffff; /* contrast with gold background */
+  box-shadow: 0 0 0 6px rgba(255,255,255,0.15) inset;
+}
+.gallery-section.section-block::before,
+.gallery-section.section-block::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border: 3px solid #ffffff;
+  transform: rotate(45deg);
+}
+.gallery-section.section-block::before { top: -10px; left: -10px; }
+.gallery-section.section-block::after { bottom: -10px; right: -10px; }
+
+/* Party and RSVP (white background) keep gold borders; add more contrast */
+.party-section.section-block,
+.rsvp-section.section-block,
+.events-section.section-block {
+  border-left-color: hsl(var(--gold));
+  border-right-color: hsl(var(--gold));
+  box-shadow: 0 0 0 1px hsl(var(--gold) / 0.25) inset;
+}
+
+/* Prevent horizontal overflow */
+html, body { overflow-x: hidden; }
+
+/* Align countdown to same width as main content and keep corners inside */
+.site-container .countdown-section.section-block {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+}
+.site-container .countdown-section.section-block::before {
+  top: 0;
+  left: 0;
+}
+.site-container .countdown-section.section-block::after {
+  bottom: 0;
+  right: 0;
+}
+
+/* Countdown inner content width matches main container */
+.countdown-section.section-block > * {
+  max-width: 1100px;
+}
+
+/* Smooth side-to-side motion for camera icon */
+@keyframes cameraSway {
+  0% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
+}
+.animated-camera svg .sway {
+  animation: cameraSway 3.2s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Gifts: replace simple top/bottom border with elegant continuous wave borders */
+.gifts-container {
+  border: none !important;
+  border-radius: 10px;
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.gifts-container::before,
+.gifts-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  border: none;
+  background-repeat: repeat-x;
+  background-size: 120px 14px;
+  background-position: center;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='14' viewBox='0 0 120 14'><path d='M0 7 C 10 1, 20 13, 30 7 S 50 13, 60 7 S 80 1, 90 7 S 110 13, 120 7' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  opacity: 0.95;
+  pointer-events: none;
+}
+.gifts-container::before { top: 0; transform: translateY(-2px); }
+.gifts-container::after { bottom: 0; transform: translateY(2px) scaleY(-1); }
+
+/* Party cards: golden rounded framed small cards with polished gold gradient */
+.party-card {
+  background: linear-gradient(145deg, var(--gold-main-light), var(--gold-main-dark)) !important;
+  border-radius: 16px !important;
+  border: 3px solid hsl(var(--gold)) !important;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.35);
+  color: #ffffff;
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.party-card::before,
+.party-card::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 12px;
+}
+/* Inner elegant double frame */
+.party-card::before { inset: 8px; border: 2px solid rgba(255,255,255,0.6); }
+.party-card::after { inset: 14px; border: 1px solid rgba(255,255,255,0.35); }
+
+/* Ensure text is readable on golden background */
+.party-card h3,
+.party-card p { color: #ffffff; }
+
+/* Keep icon visible on golden background */
+.party-card .party-icon svg { stroke: currentColor; color: #ffffff; }
+
+/* Remove gap between hero and countdown */
+.hero-wrapper { padding-bottom: 0; }
+
+.site-container .countdown-section.section-block,
+.countdown-section.section-block {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Eliminación de estilos de íconos 3D (revertido) */
+/* (No se definen clases .icon-3d, tamaños ni hovers personalizados) */
+
+/* Compactar altura de sección de regalos */
+.gifts-section.section-block {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Reducir altura visual del bloque de regalos */
+.gifts-container {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Eventos: eliminar bordes y marcos para color liso */
+.events-section .event-card {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.events-section .event-card::before,
+.events-section .event-card::after {
+  display: none !important;
+}
+
+/* Eventos: bordes dorados elegantes para Ceremonia y Celebración */
+.events-section .event-card {
+  border: 3px solid hsl(var(--gold)) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 22px rgba(166, 124, 45, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+  position: relative;
+}
+
+/* Esquinas decorativas en dorado (diamantes sutiles) */
+.events-section .event-card::before,
+.events-section .event-card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid hsl(var(--gold));
+  transform: rotate(45deg);
+  background: transparent;
+  display: block !important; /* reactivar si se había ocultado */
+}
+.events-section .event-card::before { top: -8px; left: -8px; }
+.events-section .event-card::after { bottom: -8px; right: -8px; }
+
+/* Delineado interno tenue para dar profundidad sin recargar */
+.events-section .event-card {
+  outline: 1px solid hsl(var(--gold) / 0.35) !important;
+  outline-offset: -8px;
+}
+
+/* Eventos: marco dorado separado (no pegado al contenido) */
+.events-section .event-card {
+  border: none !important;          /* quitamos borde directo */
+  outline: none !important;         /* quitamos delineado directo */
+  position: relative;
+  overflow: visible;                 /* permitir mostrar el marco externo */
+}
+
+/* Marco externo con espacio (gap) alrededor */
+.events-section .event-card::before {
+  content: '';
+  position: absolute;
+  inset: -12px;                      /* controla el espacio entre tarjeta y marco */
+  border: 3px solid hsl(var(--gold));
+  border-radius: 18px;               /* ligeramente mayor que el de la tarjeta */
+  box-shadow: 0 8px 18px rgba(166,124,45,0.15);
+  pointer-events: none;
+}
+
+/* Esquinas decorativas del marco (diamantes) */
+.events-section .event-card::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 2px solid hsl(var(--gold));
+  transform: rotate(45deg);
+  top: -16px; left: -16px;           /* esquina superior izquierda del marco */
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Esquina opuesta usando pseudo-elemento adicional vía background (truco) */
+.events-section .event-card::before {
+  background:
+    radial-gradient(circle, transparent 10px, transparent 10px) 0 0/100% 100% no-repeat;
+}
+.events-section .event-card {
+  /* Diamante en esquina inferior derecha con otro pseudo contenedor */
+}
+
+/* Segundo diamante usando un wrapper interno opcional (fallback) */
+.events-section .event-card > .event-title::before {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 2px solid hsl(var(--gold));
+  transform: rotate(45deg);
+  bottom: -16px; right: -16px;
+  pointer-events: none;
+}
+
+/* Ajustes del marco separado: rectángulo puro y sin diamantes */
+.events-section .event-card::before {
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  z-index: 1;
+}
+.events-section .event-card::after,
+.events-section .event-card > .event-title::before {
+  display: none !important;
+}
+
+/* Marco externo decorado: doble aro + esquinas diamante */
+.events-section .event-card::before {
+  /* marco base ya creado: añadimos delineado interno y sutil brillo */
+  outline: 1px dotted hsl(var(--gold) / 0.55);
+  outline-offset: -6px;
+  box-shadow: 0 8px 18px rgba(166,124,45,0.15), 0 0 0 1px hsl(var(--gold) / 0.25) inset;
+}
+
+.events-section .event-card::after {
+  /* reactivar y dibujar 4 diamantes en las esquinas del marco */
+  display: block !important;
+  inset: -12px;
+  border: none;
+  border-radius: 18px;
+  z-index: 2;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 16px 16px, 16px 16px, 16px 16px, 16px 16px;
+  background-position:
+    left -8px top -8px,
+    right -8px top -8px,
+    left -8px bottom -8px,
+    right -8px bottom -8px;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><rect x='3' y='3' width='10' height='10' fill='none' stroke='%23d4a24c' stroke-width='2' transform='rotate(45 8 8)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><rect x='3' y='3' width='10' height='10' fill='none' stroke='%23d4a24c' stroke-width='2' transform='rotate(45 8 8)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><rect x='3' y='3' width='10' height='10' fill='none' stroke='%23d4a24c' stroke-width='2' transform='rotate(45 8 8)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><rect x='3' y='3' width='10' height='10' fill='none' stroke='%23d4a24c' stroke-width='2' transform='rotate(45 8 8)'/></svg>");
+}
+
+@media (max-width: 768px) {
+  .countdown-section .countdown-number { font-size: 3.4rem !important; }
+  .countdown-section .countdown-label { font-size: 0.9rem !important; }
+}
+@media (max-width: 480px) {
+  .countdown-section .countdown-number { font-size: 3.2rem !important; }
+}
+
+/* =======================
+   Overrides solicitados
+   ======================= */
+
+/* Countdown: una sola línea sin saltos y escalado proporcional */
+.countdown-section .countdown-container {
+  display: flex;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.25rem, 2vw, 1rem) !important;
+  width: 100%;
+  white-space: nowrap;
+}
+.countdown-section .countdown-item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.countdown-section .countdown-number {
+  font-size: clamp(1.1rem, 8.2vw, 3.2rem) !important;
+  line-height: 1;
+}
+.countdown-section .countdown-label {
+  font-size: clamp(0.5rem, 2.4vw, 0.9rem) !important;
+  letter-spacing: clamp(0.08em, 1.2vw, 0.18em);
+}
+.countdown-section .countdown-separator {
+  flex: 0 0 auto;
+  font-size: clamp(0.9rem, 5vw, 1.6rem) !important;
+  line-height: 1;
+}
+
+/* Eventos: asegurar mismo ancho/alto para Ceremonia y Celebración */
+.events-section .events-container {
+  align-items: stretch !important;
+}
+.events-section .event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 520px !important; /* igual altura mínima para ambos */
+  width: 100% !important; /* ocupar todo el ancho de la columna para mismo ancho */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Carrusel en móvil: centrar imagen principal y corregir desplazamiento por gap */
+@media (max-width: 768px) {
+  .carousel-track { gap: 0 !important; }
+  .carousel-item img { object-position: center !important; }
+}
+
+/* Espaciados móviles entre tarjetas y entre secciones */
+@media (max-width: 768px) {
+  /* sumar 24px para despejar el marco externo (inset:-12px) de cada tarjeta */
+  .events-section .events-container { row-gap: calc(2rem + 24px) !important; }
+  /* margen extra para separar el último marco de eventos del inicio de la galería */
+  .events-section.section-block { margin-bottom: calc(0.75rem + 24px); }
+}
+
+/* Portada: pegar al borde superior y ampliar en móviles */
+.hero-wrapper { padding-top: 0 !important; padding-bottom: 0 !important; }
+@media (max-width: 768px) {
+  .hero-split { height: auto !important; }
+  .hero-left { height: 60vh !important; }
+  .hero-left img { object-fit: cover; object-position: center; }
+  .hero-left-bg { height: 100%; }
+  .hero-right { height: 85vh !important; }
+}
+
+.animated-camera lord-icon {
+    width: 320px !important;
+    height: 320px !important;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes bowtieSway {
+	0%, 100% { transform: rotate(0deg) translateY(0); }
+	25% { transform: rotate(-4deg) translateY(-2px); }
+	50% { transform: rotate(0deg) translateY(-4px); }
+	75% { transform: rotate(4deg) translateY(-2px); }
+}
+@keyframes bowtiePulse {
+	0%, 100% { filter: drop-shadow(0 0 6px rgba(255,255,255,0.25)); }
+	50% { filter: drop-shadow(0 0 14px rgba(255,255,255,0.55)); }
+}
+.bowtie-anim {
+	animation: bowtieSway 2.4s ease-in-out infinite, bowtiePulse 2.2s ease-in-out infinite;
+	will-change: transform, filter;
+	color: #ffffff;
+}
+
+/* Acentuar líneas y blanco en música, dress y detalles */
+.icon-music, .icon-dress, .icon-details { color: #ffffff; }
+.icon-dress .bowtie-anim g { stroke-width: 1.5; }
+.icon-music lord-icon, .icon-details lord-icon { filter: drop-shadow(0 0 10px rgba(255,255,255,0.6)); }
+
+/* Asegurar que el contenedor de iconos en party cards no limite el tamaño */
+.party-card .party-icon { width: auto !important; height: auto !important; padding: 0 !important; }
+
+/* Íconos más pequeños globalmente (música, dress, detalles) */
+.icon-music lord-icon,
+.icon-details lord-icon { width: 110px !important; height: 110px !important; }
+.icon-dress svg.bowtie-anim { width: 110px !important; height: 110px !important; }
+
+/* Íconos más pequeños en móviles */
+@media (max-width: 768px) {
+	.icon-music lord-icon,
+	.icon-details lord-icon { width: 110px !important; height: 110px !important; }
+	.icon-dress svg.bowtie-anim { width: 110px !important; height: 110px !important; }
+	.events-section .event-icon { width: 90px !important; height: 90px !important; }
+	.events-section .event-icon lord-icon { width: 90px !important; height: 90px !important; }
+}
+
+/* Reducir alto visual de la galería en móviles (sin alterar tamaño de imágenes) */
+@media (max-width: 768px) {
+	.gallery-section { padding: 1.2rem 0.75rem; } /* Reducido de 2rem a 1.2rem (40% menos) */
+	.gallery-section .section-subtitle { margin-bottom: 0.9rem; } /* Reducido de 1.5rem a 0.9rem */
+	.gallery-section .carousel-container { margin: 0 auto 0.6rem; } /* Reducido de 1rem a 0.6rem */
+}
+
+.decorative-line {
+	position: relative;
+	height: 22px;
+	margin: 16px 0;
+	background-image:
+		/* Líneas más largas (patrón 4x) */
+		linear-gradient(to right, transparent 0 20px, rgba(255,255,255,1) 20px 60px, transparent 60px 320px),
+		linear-gradient(to right, transparent 0 180px, rgba(255,255,255,1) 180px 220px, transparent 220px 320px),
+		/* Puntos S-M-S (grupo 1) */
+		radial-gradient(circle at 100px 50%, rgba(255,255,255,1) 2px, rgba(255,255,255,0) 6px),
+		radial-gradient(circle at 120px 50%, rgba(255,255,255,1) 3.4px, rgba(255,255,255,0) 7px),
+		radial-gradient(circle at 140px 50%, rgba(255,255,255,1) 2px, rgba(255,255,255,0) 6px),
+		/* Puntos S-M-S (grupo 2) */
+		radial-gradient(circle at 260px 50%, rgba(255,255,255,1) 2px, rgba(255,255,255,0) 6px),
+		radial-gradient(circle at 280px 50%, rgba(255,255,255,1) 3.4px, rgba(255,255,255,0) 7px),
+		radial-gradient(circle at 300px 50%, rgba(255,255,255,1) 2px, rgba(255,255,255,0) 6px);
+	background-size:
+		320px 2px,
+		320px 2px,
+		320px 22px,
+		320px 22px,
+		320px 22px,
+		320px 22px,
+		320px 22px,
+		320px 22px;
+	background-position:
+		left center,
+		left center,
+		left center,
+		left center,
+		left center,
+		left center,
+		left center,
+		left center;
+	background-repeat: repeat-x;
+	opacity: 0.98;
+}
+.countdown-section .decorative-line-top { margin-top: 8px; }
+.countdown-section .decorative-line-bottom { margin-bottom: 12px; }
+@media (max-width: 768px) {
+	.decorative-line { height: 16px; margin: 12px 0; }
+	.countdown-section .decorative-line-top { margin-top: 10px; }
+	.countdown-section .decorative-line-bottom { margin-bottom: 14px; }
+}
+
+.divider-line {
+	height: 14px;
+	margin: 12px 0 14px 0;
+	background-image:
+		linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 12%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.2) 88%, rgba(255,255,255,0) 100%),
+		radial-gradient(circle at 12% 50%, rgba(255,255,255,0.8) 2.6px, rgba(255,255,255,0) 5px),
+		radial-gradient(circle at 32% 50%, rgba(255,255,255,0.9) 3.2px, rgba(255,255,255,0) 6px),
+		radial-gradient(circle at 52% 50%, rgba(255,255,255,1) 3.6px, rgba(255,255,255,0) 7px),
+		radial-gradient(circle at 72% 50%, rgba(255,255,255,0.9) 3.2px, rgba(255,255,255,0) 6px),
+		radial-gradient(circle at 88% 50%, rgba(255,255,255,0.8) 2.6px, rgba(255,255,255,0) 5px);
+	background-size: 100% 3px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.98;
+}
+@media (max-width: 768px) {
+	.divider-line { height: 12px; }
+}
+
+
+/* =====================
+   Overrides específicos (ornamentos y ajustes solicitados)
+   ===================== */
+
+/* Carrusel: hacerlo más pequeño sin escalar el contenido interno */
+.gallery-section .carousel-container,
+.carousel-container {
+	max-width: 860px !important;
+}
+@media (min-width: 1280px) {
+	.gallery-section .carousel-container,
+	.carousel-container { max-width: 960px !important; }
+}
+
+/* Mantener tamaño de imagen consistente en todo dispositivo */
+.carousel-item { height: 400px; }
+@media (max-width: 768px) { .carousel-item { height: 400px; } }
+@media (max-width: 480px) { .carousel-item { height: 400px; } }
+
+/* Compactar la sección de galería sin escalar las imágenes */
+.gallery-section.section-block { padding: 1.5rem 0; } /* Reducido de 2.5rem a 1.5rem (40% menos) */
+.gallery-section .section-title { margin-top: 0.15rem; margin-bottom: 0.15rem; } /* Reducido de 0.25rem a 0.15rem */
+.gallery-section .section-subtitle { margin-bottom: 0.45rem; } /* Reducido de 0.75rem a 0.45rem */
+
+/* Subrayado SVG para "Ceremonia" y "Celebración" (blanco, largo y cercano al título) */
+.events-section .event-title-underline {
+	color: #ffffff;
+	line-height: 0;
+	margin-top: -6px;
+	margin-bottom: 10px;
+}
+.events-section .event-title-underline svg {
+	display: block;
+	width: 94%;
+	max-width: 640px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+/* Ornamento animado de galería: espacio sutil debajo */
+.gallery-ornament { margin-bottom: 5px; } /* Reducido de 8px a 5px (40% menos) */
+
+/* Borde decorativo más pequeño (repetición de raya-3puntos-raya) */
+.decorative-line.small {
+	height: 12px;
+	margin: 6px 0;
+	transform: scaleY(0.55);
+	transform-origin: center;
+}
+
+/* Patrón minimalista basado en SVG (raya · tres puntos · raya) repetido a lo ancho */
+.decorative-line.use-minimal-pattern {
+	height: 12px;
+	margin: 6px 0;
+	background: transparent;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 60'><defs><style>.s{fill:%23ffffff;stroke:%23ffffff}</style></defs><path class='s' d='M20,30 Q140,25 260,30 Q140,35 20,30 Z'/><path class='s' d='M580,30 Q460,25 340,30 Q460,35 580,30 Z'/><circle class='s' cx='285' cy='30' r='3'/><circle class='s' cx='300' cy='30' r='4'/><circle class='s' cx='315' cy='30' r='3'/></svg>");
+	background-repeat: repeat-x !important;
+	background-position: left center;
+	background-size: 600px 12px !important;
+	opacity: 0.98;
+}
+/* Evitar aplastamiento vertical al usar la variante pequeña con el patrón minimalista */
+.decorative-line.small.use-minimal-pattern {
+	transform: none;
+	height: 12px;
+}
+
+/* Hacer que la línea decorativa abarque todo el ancho de la ventana */
+.decorative-line.full-bleed {
+	display: block;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100vw !important;
+	max-width: none !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+/* =====================
+   Overrides específicos (ornamentos y ajustes solicitados)
+   ===================== */
+
+/* Carrusel: hacerlo más pequeño sin escalar el contenido interno */
+.gallery-section .carousel-container,
+.carousel-container {
+	max-width: 860px !important;
+}
+@media (min-width: 1280px) {
+	.gallery-section .carousel-container,
+	.carousel-container { max-width: 960px !important; }
+}
+
+/* Subrayado SVG para "Ceremonia" y "Celebración" (blanco, largo y cercano al título) */
+.events-section .event-title-underline {
+	color: #ffffff;
+	line-height: 0;
+	margin-top: -6px;
+	margin-bottom: 10px;
+}
+.events-section .event-title-underline svg {
+	display: block;
+	width: 94%;
+	max-width: 640px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+/* Ornamento animado de galería: espacio sutil debajo */
+.gallery-ornament { margin-bottom: 5px; } /* Reducido de 8px a 5px (40% menos) */
+
+/* Borde decorativo más pequeño (repetición de raya-3puntos-raya) */
+.decorative-line.small {
+	height: 12px;
+	margin: 6px 0;
+	transform: scaleY(0.55);
+	transform-origin: center;
+}
+
+/* Patrón minimalista basado en SVG (raya · tres puntos · raya) repetido a lo ancho */
+.decorative-line.use-minimal-pattern {
+	height: 12px;
+	margin: 6px 0;
+	background: transparent;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 60'><defs><style>.s{fill:%23ffffff;stroke:%23ffffff}</style></defs><path class='s' d='M20,30 Q140,25 260,30 Q140,35 20,30 Z'/><path class='s' d='M580,30 Q460,25 340,30 Q460,35 580,30 Z'/><circle class='s' cx='285' cy='30' r='3'/><circle class='s' cx='300' cy='30' r='4'/><circle class='s' cx='315' cy='30' r='3'/></svg>");
+	background-repeat: repeat-x;
+	background-position: left center;
+	background-size: 600px 12px;
+	opacity: 0.98;
+}
+/* Evitar aplastamiento vertical al usar la variante pequeña con el patrón minimalista */
+.decorative-line.small.use-minimal-pattern {
+	transform: none;
+	height: 12px;
+}
+
+/* SVG decorative borders */
+.decorative-border {
+	display: block;
+	width: 100%;
+	height: 60px;
+	margin: 6px 0;
+}
+
+/* Countdown: mantener igual distancia a las esquinas (respeta padding del bloque) */
+.countdown-section .countdown-border {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Carousel: mantener igual distancia lateral que el countdown dentro de su sección */
+.gallery-section .carousel-border {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* === Overrides compactos de galería (solo espaciados, sin tocar tamaños) === */
+.gallery-section { padding: 1.4rem 0.75rem; }
+.gallery-section .section-title { margin-top: 0.2rem; margin-bottom: 0.1rem; }
+.gallery-section .section-subtitle { margin-bottom: 0.35rem; }
+.gallery-section .animated-camera { margin-bottom: 0.4rem; }
+.gallery-section .carousel-container { margin: 0 auto 0.35rem; }
+@media (max-width: 768px) {
+  .gallery-section { padding: 1rem 0.5rem; }
+  .gallery-section .section-subtitle { margin-bottom: 0.4rem; }
+  .gallery-section .carousel-container { margin: 0 auto 0.4rem; }
+}
+
+/* === Galería: igualar alto a eventos y acomodar contenido dentro === */
+/* Alto objetivo ~600px (520px tarjetas + decoraciones) */
+.gallery-section.section-block {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* no recorta contenido clave: ajustamos interiores */
+}
+.gallery-section .gallery-container {
+  flex: 1 1 auto;
+}
+/* Bordes decorativos más compactos */
+/* Ornamento (infinito) dentro del espacio */
+/* Título/subtítulo compactos sin cambiar tamaños de fuente */
+/* Icono de cámara ajustado para caber */
+/* Carrusel: altura asignada para encajar dentro del alto objetivo */
+/* Contador compacto */
+@media (max-width: 768px) {
+}
+
+/* === Overrides finales: compactar solo espaciados, conservar tamaños === */
+/* restaurar tamaños originales (sin recortes) */
+@media (max-width: 768px) {
+}
+
+/* === Carrusel compacto (opción B): alturas levemente menores sin deformar === */
+/* Desktop */
+/* Móvil */
+@media (max-width: 768px) {
+}
+
+
+/* Ajuste de espaciados solicitados (márgenes de título, subtítulo y contenedor) */
+
+/* Reset de padding/margen para compactar galería según solicitud */
+.gallery-section.section-block {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+}
+.gallery-section.section-block * {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ajustes finos de espaciado: cámara y carrusel */
+.gallery-section .animated-camera {
+    margin-bottom: 10px !important; /* espacio controlado debajo del icono */
+}
+
+.gallery-section .carousel-container {
+    margin-top: 0 !important; /* aseguramos que el carrusel no agregue espacio extra */
+}
+
+/* Ajustes solicitados: layout de contenedor, cámara y carrusel */
+.gallery-section .gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-section .animated-camera {
+    margin: 15px 0; /* ajusta arriba y abajo */
+    /* Si quieres centrarlo más exacto, puedes usar: */
+    /* margin-top: calc((altura del carrusel - altura del icono) / 2); */
+}
+
+.gallery-section .carousel-container {
+    margin-top: 0;
+}
+
+/* Carrusel: borde blanco visible en imágenes y centrado; 3 en desktop, 1 en móvil */
+.gallery-section .carousel-container { margin-left: auto !important; margin-right: auto !important; }
+.gallery-section .carousel-track { display: flex !important; justify-content: flex-start !important; gap: 24px !important; }
+/* Desktop: 3 simultáneamente con espacio entre fotos */
+.gallery-section .carousel-item { flex: 0 0 calc((100% - 48px) / 3) !important; max-width: calc((100% - 48px) / 3) !important; }
+
+/* Refuerzo de especificidad para el carrusel de escritorio */
+.gallery-section .carousel-desktop .carousel-track { gap: 24px !important; justify-content: flex-start !important; }
+.gallery-section .carousel-desktop .carousel-item { flex: 0 0 calc((100% - 48px) / 3) !important; max-width: calc((100% - 48px) / 3) !important; }
+/* Imágenes con borde blanco y leve sombra */
+.gallery-section .carousel-item img { border: 4px solid #ffffff !important; border-bottom-width: 10px !important; border-radius: 6px !important; box-shadow: 0 6px 16px rgba(0,0,0,0.12) !important; }
+/* Móvil: 1 por vista, centrado */
+@media (max-width: 768px) {
+  .gallery-section .carousel-item { flex: 0 0 100% !important; max-width: 100% !important; }
+}
+
+/* Móvil: centrar imágenes y mostrarlas completas en el carrusel */
+@media (max-width: 768px) {
+  .gallery-section .carousel-item {
+    height: 320px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .gallery-section .carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* sin recorte */
+    object-position: center center !important; /* centradas */
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .gallery-section .carousel-track { gap: 0 !important; }
+}
+
+/* Mobile-only: carrusel con borde fino, separación y una imagen centrada */
+@media (max-width: 768px) {
+  .gallery-section .carousel-track-container { 
+    padding-left: 16px !important; 
+    padding-right: 16px !important; 
+  }
+  .gallery-section .carousel-track { 
+    gap: 20px !important; 
+  }
+  .gallery-section .carousel-item { 
+    flex: 0 0 100% !important; 
+    max-width: 100% !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+  }
+  .gallery-section .carousel-item img { 
+    border-width: 3px !important; 
+    border-bottom-width: 8px !important;
+    object-fit: contain !important; 
+    object-position: center center !important; 
+  }
+}
+
+/* Mobile carousel: corregir centrado perfecto de imágenes */
+@media (max-width: 768px) {
+  .gallery-section .carousel-container { 
+    display: flex !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+  }
+  .gallery-section .carousel-track-container { 
+    padding-left: 16px !important; 
+    padding-right: 16px !important; 
+    display: flex !important; 
+    justify-content: center !important; 
+  }
+  .gallery-section .carousel-track { 
+    gap: 20px !important; 
+    justify-content: center !important; 
+    align-items: center !important; 
+  }
+  .gallery-section .carousel-item { 
+    flex: 0 0 100% !important; 
+    max-width: 100% !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    text-align: center !important; 
+  }
+  .gallery-section .carousel-item img { 
+    border-width: 2px !important; 
+    object-fit: contain !important; 
+    object-position: center center !important; 
+    margin: 0 auto !important; 
+    display: block !important; 
+  }
+}
+
+/* Carrusel dual: desktop original + móvil Swiper */
+.carousel-desktop { display: block; }
+.carousel-mobile { display: none; }
+
+/* Móvil: ocultar desktop, mostrar Swiper */
+@media (max-width: 768px) {
+  .carousel-desktop { display: none !important; }
+  .carousel-mobile { display: block !important; }
+}
+
+/* Estilos Swiper móvil */
+.swiper-container {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  margin: auto;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 4px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Flechas doradas */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #c49b3f !important;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Paginación dorada */
+.swiper-pagination-bullet {
+  background: #c49b3f !important;
+}
+/* ===== Mobile-only carousel fixes (<=768px) ===== */
+@media (max-width: 768px) {
+  /* Prevent overflow and allow intrinsic height based on image ratio */
+  .carousel-container {
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+
+  .carousel-track {
+    align-items: center !important;
+  }
+
+  /* Remove rigid heights on mobile and cap to viewport height */
+  .carousel-item.carousel-item {
+    height: auto !important;
+    max-height: 80vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Show full image without distortion; never exceed device width/height */
+  .carousel-item.carousel-item img {
+    width: 90% !important;
+    max-width: 90vw !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* Keep nav buttons vertically centered regardless of dynamic heights */
+  .carousel-prev,
+  .carousel-next {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  
+}
+
+@media (max-width: 768px) {
+  .carousel-container img {
+    width: 90% !important;
+    max-width: 90vw !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}
