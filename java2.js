@@ -12,13 +12,7 @@ function initializeApp() {
     initializeModal();
     initializeSeparatorsAnimation();
     initializeHeroParallax();
-    // Cerrar modal automáticamente si no hay interacción en 10s (evita bloqueo visual)
-    setTimeout(() => {
-        const modal = document.getElementById('welcomeModal');
-        if (modal && modal.style.display !== 'none') {
-            modal.style.display = 'none';
-        }
-    }, 10000);
+    // Splash permanece hasta que el usuario elija una opción
 }
 
 if (document.readyState === 'loading') {
