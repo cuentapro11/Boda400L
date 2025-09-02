@@ -1656,13 +1656,13 @@ html, body { overflow-x: hidden; }
   display: flex;
   flex-wrap: nowrap !important;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(0.25rem, 2vw, 1rem) !important;
+  justify-content: center;
+  gap: clamp(0.15rem, 1vw, 0.5rem) !important;
   width: 100%;
   white-space: nowrap;
 }
 .countdown-section .countdown-item {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   min-width: 0;
 }
 .countdown-section .countdown-number {
@@ -1677,6 +1677,7 @@ html, body { overflow-x: hidden; }
   flex: 0 0 auto;
   font-size: clamp(0.7rem, 3vw, 1.1rem) !important;
   line-height: 1;
+  margin: 0 4px;
 }
 
 /* Eventos: asegurar mismo ancho/alto para Ceremonia y Celebración */
