@@ -1640,11 +1640,11 @@ html, body { overflow-x: hidden; }
 }
 
 @media (max-width: 768px) {
-  .countdown-section .countdown-number { font-size: 3.4rem !important; }
-  .countdown-section .countdown-label { font-size: 0.9rem !important; }
+  .countdown-section .countdown-number { font-size: 2.2rem !important; }
+  .countdown-section .countdown-label { font-size: 0.75rem !important; }
 }
 @media (max-width: 480px) {
-  .countdown-section .countdown-number { font-size: 3.2rem !important; }
+  .countdown-section .countdown-number { font-size: 2rem !important; }
 }
 
 /* =======================
@@ -1666,16 +1666,16 @@ html, body { overflow-x: hidden; }
   min-width: 0;
 }
 .countdown-section .countdown-number {
-  font-size: clamp(1.1rem, 8.2vw, 3.2rem) !important;
+  font-size: clamp(1rem, 4.6vw, 2.2rem) !important;
   line-height: 1;
 }
 .countdown-section .countdown-label {
-  font-size: clamp(0.5rem, 2.4vw, 0.9rem) !important;
-  letter-spacing: clamp(0.08em, 1.2vw, 0.18em);
+  font-size: clamp(0.55rem, 1.6vw, 0.75rem) !important;
+  letter-spacing: clamp(0.06em, 0.8vw, 0.14em);
 }
 .countdown-section .countdown-separator {
   flex: 0 0 auto;
-  font-size: clamp(0.9rem, 5vw, 1.6rem) !important;
+  font-size: clamp(0.7rem, 3vw, 1.1rem) !important;
   line-height: 1;
 }
 
