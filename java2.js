@@ -1,6 +1,7 @@
 // Variables globales
 let isPlaying = false;
 let player = null;
+let playerReady = false;
 let currentSlide = 0;
 let totalSlides = 0;
 let enableMusic = false;
@@ -12,6 +13,9 @@ function initializeApp() {
     initializeModal();
     initializeSeparatorsAnimation();
     initializeHeroParallax();
+    loadYouTubeAPI(); // Se precarga desde el inicio (no en el click) para que
+                       // playVideo() pueda ejecutarse de forma síncrona dentro
+                       // del gesto del usuario. Esto es lo que exige iOS Safari.
     // Splash permanece hasta que el usuario elija una opción
 }
 
@@ -27,40 +31,41 @@ function initializeModal() {
     const enterWithoutMusic = document.getElementById('enterWithoutMusic');
     const modal = document.getElementById('welcomeModal');
 
-    if (enterWithMusic) {
-        enterWithMusic.addEventListener('click', function() {
-            enableMusic = true;
-            modal.style.display = 'none';
-            if (window.YT && window.YT.Player) {
-                initializeYouTubePlayer();
-            } else {
-                loadYouTubeAPI();
-            }
-        });
+    function handleEnterWithMusic() {
+        enableMusic = true;
+        modal.style.display = 'none';
+        document.getElementById('musicPlayer').style.display = 'block';
+
+        // El player ya existe (se precargó en initializeApp), así que
+        // playVideo() se llama de inmediato, dentro del mismo tick del click.
+        // Eso es lo que iOS necesita para no bloquear el audio.
+        if (playerReady && player) {
+            player.playVideo();
+            isPlaying = true;
+            updateMusicIcon();
+        }
+        // Si el player todavía no está listo (conexión lenta), onPlayerReady
+        // se encarga de reproducir apenas termine de inicializar.
     }
 
-    if (enterWithoutMusic) {
-        enterWithoutMusic.addEventListener('click', function() {
-            enableMusic = false;
-            modal.style.display = 'none';
-        });
+    function handleEnterWithoutMusic() {
+        enableMusic = false;
+        modal.style.display = 'none';
     }
 
-    // Fallback por delegación (por si los listeners directos no se adjuntan)
+    if (enterWithMusic) enterWithMusic.addEventListener('click', handleEnterWithMusic);
+    if (enterWithoutMusic) enterWithoutMusic.addEventListener('click', handleEnterWithoutMusic);
+
+    // Fallback por delegación (por si los listeners directos no se adjuntan).
+    // Se chequea que el modal siga visible para no duplicar la ejecución
+    // cuando el listener directo ya corrió.
     document.addEventListener('click', function(evt) {
         const withBtn = evt.target.closest && evt.target.closest('#enterWithMusic');
         const withoutBtn = evt.target.closest && evt.target.closest('#enterWithoutMusic');
-        if (withBtn && modal) {
-            enableMusic = true;
-            modal.style.display = 'none';
-            if (window.YT && window.YT.Player) {
-                initializeYouTubePlayer();
-            } else {
-                loadYouTubeAPI();
-            }
-        } else if (withoutBtn && modal) {
-            enableMusic = false;
-            modal.style.display = 'none';
+        if (withBtn && modal && modal.style.display !== 'none') {
+            handleEnterWithMusic();
+        } else if (withoutBtn && modal && modal.style.display !== 'none') {
+            handleEnterWithoutMusic();
         }
     });
 }
@@ -150,8 +155,6 @@ function loadYouTubeAPI() {
 
 // Función llamada por la API de YouTube
 function initializeYouTubePlayer() {
-    if (!enableMusic) return;
-
     player = new YT.Player('youtube-player', {
         height: '1',
         width: '1',
@@ -178,14 +181,15 @@ function initializeYouTubePlayer() {
 }
 
 function onPlayerReady(event) {
-    const musicPlayer = document.getElementById('musicPlayer');
+    playerReady = true;
     const musicToggle = document.getElementById('musicToggle');
-    
-    musicPlayer.style.display = 'block';
-    musicToggle.addEventListener('click', toggleMusic);
-    
-    // Reproducir si está habilitada la música
-    if (enableMusic) {
+    if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
+
+    // Caso borde: el usuario ya hizo click en "con música" antes de que el
+    // player terminara de inicializar (ej. conexión lenta). Lo reproducimos
+    // apenas esté listo.
+    if (enableMusic && !isPlaying) {
+        document.getElementById('musicPlayer').style.display = 'block';
         event.target.playVideo();
         isPlaying = true;
         updateMusicIcon();

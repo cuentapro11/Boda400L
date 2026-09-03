@@ -305,7 +305,7 @@ body {
 .hero-wrapper {
     position: relative;
     z-index: 0;
-    padding: 2rem 0; /* para que respire como el resto del contenido */
+    padding: 0;
 }
 
 /* Para centrar la grilla de portada igual que el resto */
@@ -318,7 +318,7 @@ body {
 .hero-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 72vh; /* ajusta para menos recorte */
+    height: 80vh; /* igualado a la referencia */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: none; /* la sombra viene del contenedor padre */
@@ -525,11 +525,14 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
+    gap: 4.5rem;
 }
 
 .event-card {
     text-align: center;
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .event-icon {
@@ -1666,7 +1669,7 @@ html, body { overflow-x: hidden; }
   min-width: 0;
 }
 .countdown-section .countdown-number {
-  font-size: clamp(1rem, 4.6vw, 2.2rem) !important;
+  font-size: clamp(1.4rem, 4vw, 1.9rem) !important;
   line-height: 1;
 }
 .countdown-section .countdown-label {
