@@ -2401,16 +2401,24 @@ html, body { overflow-x: hidden; }
 
 /* --- Carrusel móvil (Swiper): mismas alturas de foto que la 200 --- */
 @media (max-width: 768px) {
+  .carousel-mobile .swiper-slide {
+    height: 200px !important;
+    overflow: hidden !important;
+  }
   .carousel-mobile .swiper-slide img {
     width: 100% !important;
-    height: auto !important;
-    max-height: 320px !important;
+    height: 200px !important;
+    max-height: none !important;
     object-fit: cover !important;
+    border-radius: 0 !important;
   }
 }
 @media (max-width: 480px) {
+  .carousel-mobile .swiper-slide {
+    height: 100px !important;
+  }
   .carousel-mobile .swiper-slide img {
-    max-height: 100px !important;
+    height: 100px !important;
   }
 }
 
