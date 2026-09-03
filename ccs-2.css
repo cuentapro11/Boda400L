@@ -2348,3 +2348,80 @@ html, body { overflow-x: hidden; }
   margin-top: 0.5rem !important;
   margin-bottom: 1.25rem !important;
 }
+
+/* =====================================================
+   AJUSTES SOLICITADOS: igualar countdown y carrusel a la 200
+   ===================================================== */
+
+/* --- Countdown: bajar la altura al nivel de la invitación 200 (o un poco menos) --- */
+.countdown-section .decorative-border.countdown-border {
+  height: 10px !important;
+  margin: 4px 0 !important;
+}
+.countdown-section .section-title {
+  font-size: 1.4rem !important;
+  margin-bottom: 0.2rem !important;
+}
+.countdown-heart {
+  margin-top: 0.2rem !important;
+}
+.countdown-heart svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+.countdown-section.section-block {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+.countdown-section {
+  padding: 0.35rem 0.5rem !important;
+}
+
+/* --- Carrusel: mismo ancho de contenedor que la 200 --- */
+.gallery-section .carousel-container,
+.carousel-container {
+  max-width: 1200px !important;
+}
+
+/* --- Carrusel desktop: mismas alturas que la 200 --- */
+.gallery-section .carousel-desktop .carousel-item {
+  height: 300px !important;
+  max-height: none !important;
+}
+.gallery-section .carousel-desktop .carousel-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+@media (max-width: 1024px) {
+  .gallery-section .carousel-desktop .carousel-item {
+    height: 320px !important;
+  }
+}
+
+/* --- Carrusel móvil (Swiper): mismas alturas de foto que la 200 --- */
+@media (max-width: 768px) {
+  .carousel-mobile .swiper-slide img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 320px !important;
+    object-fit: cover !important;
+  }
+}
+@media (max-width: 480px) {
+  .carousel-mobile .swiper-slide img {
+    max-height: 100px !important;
+  }
+}
+
+/* --- Reducir elementos decorativos que agrandan la sección de galería --- */
+.gallery-border {
+  height: 18px !important;
+}
+.animated-camera lord-icon {
+  width: 90px !important;
+  height: 90px !important;
+}
+.animated-camera {
+  margin-bottom: 1rem !important;
+}
