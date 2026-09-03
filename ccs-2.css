@@ -2270,3 +2270,81 @@ html, body { overflow-x: hidden; }
     margin: 0 auto !important;
   }
 }
+
+/* =====================================================
+   Ajustes solicitados (ronda de refinamiento)
+   ===================================================== */
+
+/* 1) Conteo regresivo: reducir altura de la sección */
+.countdown-section.section-block {
+  padding-bottom: 1.25rem !important;
+}
+.countdown-section {
+  padding: 0.75rem 0.5rem !important;
+}
+.countdown-heart {
+  margin-top: 0.5rem !important;
+}
+.countdown-heart svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* 2) Ceremonia y Celebración: tarjetas más delgadas (menos altas y menos anchas) */
+.events-section .event-card {
+  min-height: 400px !important;
+  max-width: 340px !important;
+  padding: 1.5rem !important;
+}
+.events-section .event-details {
+  margin-bottom: 1rem !important;
+}
+.events-section .event-title {
+  margin-bottom: 1rem !important;
+}
+.events-section .event-icon,
+.events-section .event-icon lord-icon {
+  width: 70px !important;
+  height: 70px !important;
+}
+@media (max-width: 768px) {
+  .events-section .event-card {
+    min-height: auto !important;
+    max-width: 320px !important;
+  }
+}
+
+/* 3) Reducir el espacio vacío entre el carrusel de fotos y la sección "Fiesta" */
+.party-section.section-block {
+  padding-top: 2rem !important;
+}
+.gallery-section.section-block {
+  padding-bottom: 0 !important;
+}
+
+/* 4) Tarjetas de Música, Dress Code y Detalles un poco más pequeñas */
+.party-card {
+  max-width: 300px !important;
+  padding: 1.25rem !important;
+}
+.icon-music lord-icon,
+.icon-details lord-icon {
+  width: 80px !important;
+  height: 80px !important;
+}
+.icon-dress svg.bowtie-anim {
+  width: 80px !important;
+  height: 80px !important;
+}
+.party-card h3 {
+  margin-bottom: 0.5rem !important;
+}
+.party-card p {
+  margin-bottom: 1rem !important;
+}
+
+/* 5) Separar el texto "Envíanos un mensaje..." del botón "Confirmar asistencia" */
+.rsvp-container p {
+  margin-top: 0.5rem !important;
+  margin-bottom: 1.25rem !important;
+}
