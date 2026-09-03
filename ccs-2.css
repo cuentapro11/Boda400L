@@ -2183,7 +2183,7 @@ html, body { overflow-x: hidden; }
 /* Estilos Swiper móvil */
 .swiper-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   position: relative;
   margin: auto;
 }
@@ -2402,12 +2402,12 @@ html, body { overflow-x: hidden; }
 /* --- Carrusel móvil (Swiper): mismas alturas de foto que la 200 --- */
 @media (max-width: 768px) {
   .carousel-mobile .swiper-slide {
-    height: 200px !important;
+    height: 380px !important;
     overflow: hidden !important;
   }
   .carousel-mobile .swiper-slide img {
     width: 100% !important;
-    height: 200px !important;
+    height: 380px !important;
     max-height: none !important;
     object-fit: cover !important;
     border-radius: 0 !important;
@@ -2415,10 +2415,10 @@ html, body { overflow-x: hidden; }
 }
 @media (max-width: 480px) {
   .carousel-mobile .swiper-slide {
-    height: 100px !important;
+    height: 320px !important;
   }
   .carousel-mobile .swiper-slide img {
-    height: 100px !important;
+    height: 320px !important;
   }
 }
 
