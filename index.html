@@ -77,8 +77,28 @@
                 </div>
                 <!-- Lado derecho: imagen sin efecto -->
                 <div class="hero-right">
-                    <img id="heroRightImg" src="foto0.jpg" alt="Portada" loading="eager">
+                    <img id="heroRightImg" alt="Portada lateral derecha" />
                 </div>
+                <script>
+                  (function(){
+                    var img = document.getElementById('heroRightImg');
+                    if(!img) return;
+                    var ids = ['1OD85FypcqBIrtPc498UVRkRXTggDyLc-', '1OD85FypcqBIrtPc498UVRkRXTggDyLc'];
+                    var urls = [];
+                    for (var j = 0; j < ids.length; j++) {
+                      var id = ids[j];
+                      urls.push('https://drive.usercontent.google.com/uc?id=' + id + '&export=download');
+                      urls.push('https://drive.google.com/uc?export=view&id=' + id);
+                      urls.push('https://drive.google.com/uc?id=' + id + '&export=download');
+                      urls.push('https://drive.google.com/thumbnail?id=' + id + '&sz=w2000');
+                    }
+                    var i = 0;
+                    function tryNext(){ if(i >= urls.length) return; img.src = urls[i++]; }
+                    img.onerror = tryNext;
+                    tryNext();
+                  })();
+                </script>
+
             </div>
         </div>
     </div>

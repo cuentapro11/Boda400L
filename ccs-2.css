@@ -2448,12 +2448,16 @@ html, body { overflow-x: hidden; }
 /* =====================================================
    Ajuste solicitado: fotos del carrusel más altas para
    que se vean completas (sin recorte), sin agrandar de
-   más la sección de galería
+   más la sección de galería. Marco tipo "polaroid": fino
+   en los 3 lados, más grueso abajo, fijo (no depende del
+   tamaño/proporción de cada foto).
    ===================================================== */
 .gallery-section .carousel-desktop .carousel-item {
   height: 440px !important;
   max-height: none !important;
   background: #ffffff !important;
+  box-sizing: border-box !important;
+  padding: 14px 14px 48px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2466,6 +2470,7 @@ html, body { overflow-x: hidden; }
 @media (max-width: 1024px) {
   .gallery-section .carousel-desktop .carousel-item {
     height: 400px !important;
+    padding: 12px 12px 42px !important;
   }
 }
 
@@ -2474,6 +2479,11 @@ html, body { overflow-x: hidden; }
     height: 440px !important;
     overflow: hidden !important;
     background: #ffffff !important;
+    box-sizing: border-box !important;
+    padding: 12px 12px 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   .carousel-mobile .swiper-slide img {
     width: 100% !important;
@@ -2488,8 +2498,9 @@ html, body { overflow-x: hidden; }
 @media (max-width: 480px) {
   .carousel-mobile .swiper-slide {
     height: 400px !important;
+    padding: 10px 10px 36px !important;
   }
   .carousel-mobile .swiper-slide img {
-    height: 400px !important;
+    height: 100% !important;
   }
 }
