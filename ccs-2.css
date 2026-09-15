@@ -2448,17 +2448,18 @@ html, body { overflow-x: hidden; }
 /* =====================================================
    Ajuste solicitado: fotos del carrusel más altas para
    que se vean completas (sin recorte), sin agrandar de
-   más la sección de galería. Marco tipo "polaroid": fino
-   en los 3 lados, un poco más grueso abajo (fijo, no
-   depende del tamaño/proporción de cada foto), en tono
-   dorado acorde a la paleta del sitio.
+   más la sección de galería. El fondo del contenedor es
+   transparente (se funde con el dorado de la sección) y el
+   borde blanco va directo sobre cada foto: fino en los 3
+   lados, un poco más grueso abajo, fijo (no depende del
+   ángulo/proporción de cada imagen).
    ===================================================== */
 .gallery-section .carousel-desktop .carousel-item {
   height: 440px !important;
   max-height: none !important;
-  background: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) !important;
+  background: transparent !important;
   box-sizing: border-box !important;
-  padding: 6px 6px 22px !important;
+  padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2467,11 +2468,17 @@ html, body { overflow-x: hidden; }
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
+  box-sizing: border-box !important;
+  border-style: solid !important;
+  border-color: #ffffff !important;
+  border-width: 6px 6px 22px !important;
 }
 @media (max-width: 1024px) {
   .gallery-section .carousel-desktop .carousel-item {
     height: 400px !important;
-    padding: 6px 6px 20px !important;
+  }
+  .gallery-section .carousel-desktop .carousel-item img {
+    border-width: 5px 5px 20px !important;
   }
 }
 
@@ -2479,9 +2486,9 @@ html, body { overflow-x: hidden; }
   .carousel-mobile .swiper-slide {
     height: 440px !important;
     overflow: hidden !important;
-    background: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) !important;
+    background: transparent !important;
     box-sizing: border-box !important;
-    padding: 6px 6px 20px !important;
+    padding: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2491,17 +2498,20 @@ html, body { overflow-x: hidden; }
     height: 100% !important;
     max-height: none !important;
     object-fit: contain !important;
+    box-sizing: border-box !important;
     border-radius: 0 !important;
-    border: none !important;
+    border-style: solid !important;
+    border-color: #ffffff !important;
+    border-width: 5px 5px 20px !important;
     box-shadow: none !important;
   }
 }
 @media (max-width: 480px) {
   .carousel-mobile .swiper-slide {
     height: 400px !important;
-    padding: 5px 5px 18px !important;
   }
   .carousel-mobile .swiper-slide img {
     height: 100% !important;
+    border-width: 4px 4px 16px !important;
   }
 }
