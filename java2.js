@@ -4,7 +4,8 @@ let player = null;
 let playerReady = false;
 let currentSlide = 0;
 let totalSlides = 0;
-let enableMusic = false;
+let enableMusic = null; // null = aún no elige, true = con música, false = sin música
+let wantsAudibleMusic = false; // true cuando el usuario ya tocó "Ingresar con música"
 
 // Inicializar cuando el DOM esté listo
 function initializeApp() {
@@ -33,24 +34,34 @@ function initializeModal() {
 
     function handleEnterWithMusic() {
         enableMusic = true;
+        wantsAudibleMusic = true;
         modal.style.display = 'none';
         document.getElementById('musicPlayer').style.display = 'block';
 
-        // El player ya existe (se precargó en initializeApp), así que
-        // playVideo() se llama de inmediato, dentro del mismo tick del click.
-        // Eso es lo que iOS necesita para no bloquear el audio.
+        // El player ya viene sonando en segundo plano, silenciado (ver
+        // onPlayerReady). Acá solo le quitamos el mute: eso ocurre de forma
+        // síncrona dentro del mismo clic, que es justo lo que iOS Safari
+        // exige para permitir sonido en la primera interacción del usuario.
         if (playerReady && player) {
-            player.playVideo();
+            player.unMute();
+            if (!isPlaying) player.playVideo();
             isPlaying = true;
             updateMusicIcon();
         }
         // Si el player todavía no está listo (conexión lenta), onPlayerReady
-        // se encarga de reproducir apenas termine de inicializar.
+        // se encarga de activar el sonido apenas termine de inicializar.
     }
 
     function handleEnterWithoutMusic() {
         enableMusic = false;
+        wantsAudibleMusic = false;
         modal.style.display = 'none';
+
+        // Si la música ya había arrancado silenciada de fondo, la pausamos.
+        if (playerReady && player) {
+            player.pauseVideo();
+            isPlaying = false;
+        }
     }
 
     if (enterWithMusic) enterWithMusic.addEventListener('click', handleEnterWithMusic);
@@ -185,15 +196,26 @@ function onPlayerReady(event) {
     const musicToggle = document.getElementById('musicToggle');
     if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
 
-    // Caso borde: el usuario ya hizo click en "con música" antes de que el
-    // player terminara de inicializar (ej. conexión lenta). Lo reproducimos
-    // apenas esté listo.
-    if (enableMusic && !isPlaying) {
+    // La música arranca silenciada apenas el player está listo (esto no
+    // requiere gesto del usuario porque está muteada). Así, cuando el
+    // usuario toca "Ingresar con música", solo hace falta "unMute()" -una
+    // acción síncrona dentro del clic- para que se escuche de una, incluso
+    // en iPhone/Safari.
+    event.target.mute();
+    event.target.playVideo();
+    isPlaying = true;
+
+    if (wantsAudibleMusic) {
+        // El usuario ya había elegido "con música" antes de que el player
+        // terminara de cargar (ej. conexión lenta): activamos el sonido ya.
         document.getElementById('musicPlayer').style.display = 'block';
-        event.target.playVideo();
-        isPlaying = true;
-        updateMusicIcon();
+        event.target.unMute();
+    } else if (enableMusic === false) {
+        // El usuario ya eligió "sin música": no hace falta seguir reproduciendo.
+        event.target.pauseVideo();
+        isPlaying = false;
     }
+    updateMusicIcon();
 }
 
 function onPlayerStateChange(event) {
@@ -416,25 +438,38 @@ function initializeCarousel() {
 // Las funciones updateCarousel y updateSlideCounter ya no se usan en el bucle infinito
 
 // Funciones de los botones
-function openLocation(location) {
-    const addresses = {
-        ceremony: "Parroquia Nuestra Señora de Lujan, Av. Pergamino 203, Santo Domingo",
-        celebration: "Salón de fiestas Avril, Av. Los Reartes 12, Santo Domingo"
-    };
-    
-    const address = addresses[location];
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-    window.open(mapsUrl, '_blank');
+// NOTA: esta es una plantilla de ejemplo. Los botones de abajo (Cómo llegar,
+// Compartir fotos, Regalos y Confirmar asistencia) no tienen un enlace real
+// todavía: solo muestran un aviso. Reemplaza cada exampleAction(...) por la
+// acción real (enlace de Google Maps, carpeta de Drive, Google Form, etc.)
+// cuando uses esta plantilla para una boda real.
+
+const addresses = {
+    ceremony: "Iglesia San José, Calle Duarte #45, Santo Domingo, República Dominicana",
+    celebration: "Salón Jardín Bella Vista, Av. Independencia #120, Santo Domingo, República Dominicana"
+};
+
+function exampleAction(title, message) {
+    showToast(title, message);
 }
 
-function suggestMusic() {
-    const whatsappMessage = "¡Hola! Me gustaría sugerir una canción para la playlist de la boda de Rafael y Juana 🎵";
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, '_blank');
+function openLocation(location) {
+    // EJEMPLO: reemplaza esto por window.open(mapsUrl, '_blank') con la
+    // dirección real, como en la versión comentada más abajo.
+    // const address = addresses[location];
+    // const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    // window.open(mapsUrl, '_blank');
+    exampleAction("Ubicación", "Este botón es de ejemplo. Acá se abrirá el mapa con la dirección real.");
+}
+
+function shareFotos() {
+    // EJEMPLO: reemplaza esto por window.open(driveUrl, '_blank') con el
+    // enlace real de tu carpeta de Google Drive para subir fotos.
+    exampleAction("Comparte tus fotos", "Este botón es de ejemplo. Acá se abrirá el enlace real a la carpeta de Google Drive.");
 }
 
 function showDressCode() {
-    showToast("Dress Code", "Elegante sport - Colores tierra y dorados son bienvenidos 👗");
+    showToast("Dress Code", "Elegante sport - Colores tierra y dorados son bienvenidos 👔");
 }
 
 function showTips() {
@@ -442,15 +477,14 @@ function showTips() {
 }
 
 function showGifts() {
-    const message = "Hola, me gustaría información sobre los regalos para la boda de Rafael y Juana 🎁";
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    // EJEMPLO: reemplaza esto por el enlace o la información real sobre los regalos.
+    exampleAction("Nuestro regalo es tu presencia", "Este botón es de ejemplo. Acá irá la información real sobre los regalos.");
 }
 
 function confirmAttendance() {
-    const message = "¡Hola! Quiero confirmar mi asistencia a la boda de Rafael y Juana el 15 de Agosto 💒✨";
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    // EJEMPLO: reemplaza esto por window.open(googleFormUrl, '_blank') con
+    // el enlace real de tu Google Form de confirmación de asistencia.
+    exampleAction("Confirmar asistencia", "Este botón es de ejemplo. Acá se abrirá el enlace real al formulario de confirmación.");
 }
 
 // Sistema de Toast

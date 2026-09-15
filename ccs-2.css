@@ -337,7 +337,7 @@ body {
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	background-image: url('https://i.ibb.co/GQD51nRv/boda-imagen.jpg');
+	background-image: url('foto0.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center top;
@@ -2432,4 +2432,64 @@ html, body { overflow-x: hidden; }
 }
 .animated-camera {
   margin-bottom: 1rem !important;
+}
+
+/* =====================================================
+   Ajustes solicitados: ícono de "Comparte tus fotos" e
+   ícono de corbata (Dress Code)
+   ===================================================== */
+.icon-photo { color: #ffffff; }
+.icon-photo svg.upload-anim { width: 110px !important; height: 110px !important; }
+.upload-anim {
+  animation: bowtieSway 2.4s ease-in-out infinite, bowtiePulse 2.2s ease-in-out infinite;
+}
+.icon-dress .bowtie-anim path { stroke-width: 1.5; }
+
+/* =====================================================
+   Ajuste solicitado: fotos del carrusel más altas para
+   que se vean completas (sin recorte), sin agrandar de
+   más la sección de galería
+   ===================================================== */
+.gallery-section .carousel-desktop .carousel-item {
+  height: 440px !important;
+  max-height: none !important;
+  background: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.gallery-section .carousel-desktop .carousel-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+@media (max-width: 1024px) {
+  .gallery-section .carousel-desktop .carousel-item {
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-mobile .swiper-slide {
+    height: 440px !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+  }
+  .carousel-mobile .swiper-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+@media (max-width: 480px) {
+  .carousel-mobile .swiper-slide {
+    height: 400px !important;
+  }
+  .carousel-mobile .swiper-slide img {
+    height: 400px !important;
+  }
 }
