@@ -2449,15 +2449,16 @@ html, body { overflow-x: hidden; }
    Ajuste solicitado: fotos del carrusel más altas para
    que se vean completas (sin recorte), sin agrandar de
    más la sección de galería. Marco tipo "polaroid": fino
-   en los 3 lados, más grueso abajo, fijo (no depende del
-   tamaño/proporción de cada foto).
+   en los 3 lados, un poco más grueso abajo (fijo, no
+   depende del tamaño/proporción de cada foto), en tono
+   dorado acorde a la paleta del sitio.
    ===================================================== */
 .gallery-section .carousel-desktop .carousel-item {
   height: 440px !important;
   max-height: none !important;
-  background: #ffffff !important;
+  background: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) !important;
   box-sizing: border-box !important;
-  padding: 14px 14px 48px !important;
+  padding: 6px 6px 22px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2470,7 +2471,7 @@ html, body { overflow-x: hidden; }
 @media (max-width: 1024px) {
   .gallery-section .carousel-desktop .carousel-item {
     height: 400px !important;
-    padding: 12px 12px 42px !important;
+    padding: 6px 6px 20px !important;
   }
 }
 
@@ -2478,9 +2479,9 @@ html, body { overflow-x: hidden; }
   .carousel-mobile .swiper-slide {
     height: 440px !important;
     overflow: hidden !important;
-    background: #ffffff !important;
+    background: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) !important;
     box-sizing: border-box !important;
-    padding: 12px 12px 42px !important;
+    padding: 6px 6px 20px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2498,7 +2499,7 @@ html, body { overflow-x: hidden; }
 @media (max-width: 480px) {
   .carousel-mobile .swiper-slide {
     height: 400px !important;
-    padding: 10px 10px 36px !important;
+    padding: 5px 5px 18px !important;
   }
   .carousel-mobile .swiper-slide img {
     height: 100% !important;
