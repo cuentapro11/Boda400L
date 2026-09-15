@@ -2449,10 +2449,12 @@ html, body { overflow-x: hidden; }
    Ajuste solicitado: fotos del carrusel más altas para
    que se vean completas (sin recorte), sin agrandar de
    más la sección de galería. El fondo del contenedor es
-   transparente (se funde con el dorado de la sección) y el
-   borde blanco va directo sobre cada foto: fino en los 3
-   lados, un poco más grueso abajo, fijo (no depende del
-   ángulo/proporción de cada imagen).
+   transparente (se funde con el dorado de la sección). La
+   imagen toma su propio tamaño real (no estira una caja fija),
+   así el borde blanco queda pegado directo a la foto en los
+   4 lados: fino arriba/lados, un poco más grueso abajo, sin
+   espacio entre el borde y la imagen sin importar su ángulo
+   o proporción.
    ===================================================== */
 .gallery-section .carousel-desktop .carousel-item {
   height: 440px !important;
@@ -2465,9 +2467,12 @@ html, body { overflow-x: hidden; }
   justify-content: center !important;
 }
 .gallery-section .carousel-desktop .carousel-item img {
-  width: 100% !important;
-  height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
   object-fit: contain !important;
+  display: block !important;
   box-sizing: border-box !important;
   border-style: solid !important;
   border-color: #ffffff !important;
@@ -2494,10 +2499,12 @@ html, body { overflow-x: hidden; }
     justify-content: center !important;
   }
   .carousel-mobile .swiper-slide img {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: none !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     object-fit: contain !important;
+    display: block !important;
     box-sizing: border-box !important;
     border-radius: 0 !important;
     border-style: solid !important;
@@ -2511,7 +2518,6 @@ html, body { overflow-x: hidden; }
     height: 400px !important;
   }
   .carousel-mobile .swiper-slide img {
-    height: 100% !important;
     border-width: 4px 4px 16px !important;
   }
 }
